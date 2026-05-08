@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unsur-unsur Bangun Datar</title>
 
-    <!-- Google Font -->
+    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,56 +22,64 @@
 
       :root {
         --purple: #8a35d4;
-        --purple-dark: #6824a8;
-        --brown: #5c3317;
-        --bg: #f8f3ec;
-        --green: #9ff245;
-        --green2: #7ddf27;
-        --blue: #18b7dc;
-        --blue2: #38d49c;
+        --purpleDark: #6822a7;
+        --brown: #5d3418;
+        --white: #ffffff;
+
+        --green1: #97f43d;
+        --green2: #53c91f;
+
+        --blue1: #17c4ff;
+        --blue2: #16d6a8;
+
+        --bg1: #fffaf4;
+        --bg2: #f5eee4;
       }
 
       body {
         font-family: "Baloo 2", cursive;
-        background: radial-gradient(
-          circle at top,
-          #fff 0%,
-          #f7f1e8 60%,
-          #efe4d8 100%
-        );
+        background:
+          radial-gradient(circle at top left, #ffffff 0%, transparent 25%),
+          radial-gradient(circle at bottom right, #fff5dd 0%, transparent 20%),
+          linear-gradient(180deg, #fffdf8 0%, #f6efe5 100%);
         overflow-x: hidden;
         color: var(--brown);
         position: relative;
+        min-height: 100vh;
       }
 
-      /* Floating Background Shapes */
-      .shape {
+      /* ======================
+        BACKGROUND ELEMENT
+    ======================= */
+
+      .bg-shape {
         position: absolute;
-        opacity: 0.25;
         z-index: 0;
-        animation: float 6s ease-in-out infinite;
+        opacity: 0.13;
+        animation: float 8s ease-in-out infinite;
       }
 
       .circle {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        background: #d6b3ff;
+        background: #caa4ff;
       }
 
       .square {
-        width: 55px;
-        height: 55px;
-        background: #bde9ff;
-        transform: rotate(20deg);
+        width: 60px;
+        height: 60px;
+        background: #9de7ff;
+        transform: rotate(25deg);
+        border-radius: 10px;
       }
 
       .triangle {
         width: 0;
         height: 0;
-        border-left: 35px solid transparent;
-        border-right: 35px solid transparent;
-        border-bottom: 60px solid #ffd898;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 70px solid #ffd17f;
       }
 
       @keyframes float {
@@ -84,6 +92,10 @@
         }
       }
 
+      /* ======================
+          MAIN CONTAINER
+    ======================= */
+
       .container {
         width: min(1200px, 92%);
         margin: auto;
@@ -91,107 +103,117 @@
         z-index: 2;
       }
 
-      /* HERO */
+      /* ======================
+            HERO
+    ======================= */
+
       .hero {
         text-align: center;
-        padding: 60px 0 40px;
+        padding: 60px 0 30px;
       }
 
       .badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         width: 120px;
         height: 120px;
+        margin: auto;
         border-radius: 50%;
-        background: linear-gradient(145deg, #d8ff8a, #65d63f);
+        background: linear-gradient(145deg, #d6ff89, #7be032);
         border: 8px solid white;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        color: var(--brown);
-        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
-        margin-bottom: 20px;
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.12),
+          inset 0 0 10px rgba(255, 255, 255, 0.8);
         animation: bounce 3s infinite;
-      }
-
-      .badge span:first-child {
-        font-size: 28px;
-        line-height: 1;
-      }
-
-      .badge span:last-child {
-        font-size: 42px;
-        line-height: 1;
       }
 
       @keyframes bounce {
         0%,
         100% {
-          transform: translateY(0);
+          transform: translateY(0px);
         }
         50% {
           transform: translateY(-10px);
         }
       }
 
-      .subtitle {
+      .badge span:nth-child(1) {
         font-size: 28px;
         font-weight: 700;
-        color: var(--brown);
-        margin-bottom: 10px;
+        line-height: 1;
+      }
+
+      .badge span:nth-child(2) {
+        font-size: 46px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .subtitle {
+        margin-top: 20px;
+        font-size: 2rem;
+        font-weight: 700;
       }
 
       .title {
-        font-size: clamp(3rem, 7vw, 6rem);
+        font-size: clamp(3.5rem, 7vw, 6.2rem);
         line-height: 1;
+        margin-top: 12px;
         font-weight: 800;
         color: var(--purple);
+
         text-shadow:
-          -4px -4px 0 #fff,
-          4px -4px 0 #fff,
-          -4px 4px 0 #fff,
-          4px 4px 0 #fff,
-          0 8px 15px rgba(0, 0, 0, 0.15);
-        margin-bottom: 20px;
+          -5px -5px 0 white,
+          5px -5px 0 white,
+          -5px 5px 0 white,
+          5px 5px 0 white,
+          0 8px 18px rgba(0, 0, 0, 0.15);
       }
 
       .description {
+        margin-top: 18px;
         font-size: 1.5rem;
-        font-weight: 600;
-        max-width: 850px;
-        margin: auto;
+        font-weight: 700;
         line-height: 1.4;
       }
 
       .author {
-        margin-top: 18px;
-        font-size: 1.3rem;
+        margin-top: 16px;
+        font-size: 1.2rem;
         font-weight: 700;
       }
 
-      /* Section Title */
+      /* ======================
+        SECTION TITLE
+    ======================= */
+
       .section-title {
         text-align: center;
         font-size: 3rem;
         color: var(--purple);
-        margin: 70px 0 35px;
+        margin: 65px 0 35px;
         font-weight: 800;
         position: relative;
       }
 
       .section-title::after {
         content: "";
-        width: 120px;
+        width: 130px;
         height: 8px;
-        border-radius: 20px;
-        background: linear-gradient(to right, var(--purple), #dba8ff);
+        background: linear-gradient(to right, var(--purple), #d7a4ff);
         position: absolute;
+        bottom: -12px;
         left: 50%;
         transform: translateX(-50%);
-        bottom: -12px;
+        border-radius: 20px;
       }
 
-      /* Cards */
+      /* ======================
+          TUJUAN CARD
+    ======================= */
+
       .card-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -200,19 +222,18 @@
 
       .card {
         background: white;
-        border-radius: 28px;
+        border-radius: 30px;
         padding: 25px;
-        box-shadow:
-          0 10px 25px rgba(0, 0, 0, 0.08),
-          inset 0 0 0 2px rgba(255, 255, 255, 0.8);
-        transition: 0.35s;
         position: relative;
         overflow: hidden;
+
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        transition: 0.35s;
       }
 
       .card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+        transform: translateY(-10px);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
       }
 
       .card::before {
@@ -220,45 +241,51 @@
         position: absolute;
         width: 140px;
         height: 140px;
+        background: #f0ddff;
         border-radius: 50%;
-        background: rgba(167, 114, 255, 0.12);
-        top: -50px;
-        right: -40px;
+        top: -45px;
+        right: -45px;
       }
 
       .icon-box {
         width: 110px;
         height: 110px;
-        border-radius: 24px;
-        background: linear-gradient(145deg, #f3e8ff, #e9d4ff);
+        border-radius: 25px;
+        background: linear-gradient(145deg, #f2e7ff, #e8d1ff);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 60px;
+        font-size: 58px;
         margin-bottom: 18px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 2;
       }
 
       .card h3 {
         font-size: 2rem;
         line-height: 1.1;
         margin-bottom: 12px;
-        color: var(--brown);
+        position: relative;
+        z-index: 2;
       }
 
       .card p {
-        font-size: 1.2rem;
-        line-height: 1.45;
-        color: #53311d;
+        font-size: 1.15rem;
+        line-height: 1.5;
         font-weight: 600;
+        position: relative;
+        z-index: 2;
       }
 
-      /* Adventure Section */
+      /* ======================
+          PETUALANGAN
+    ======================= */
+
       .adventure-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
         gap: 30px;
-        margin-top: 30px;
         padding-bottom: 80px;
       }
 
@@ -267,89 +294,126 @@
         padding: 35px;
         position: relative;
         overflow: hidden;
-        color: white;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         transition: 0.35s;
       }
 
       .adventure-card:hover {
-        transform: translateY(-8px) scale(1.02);
+        transform: translateY(-10px);
       }
 
       .materi {
-        background: linear-gradient(135deg, var(--green2), #c8ff75);
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.35),
+            transparent 30%
+          ),
+          linear-gradient(135deg, var(--green2), var(--green1));
       }
 
       .games {
-        background: linear-gradient(135deg, var(--blue), var(--blue2));
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.35),
+            transparent 30%
+          ),
+          linear-gradient(135deg, var(--blue1), var(--blue2));
       }
 
       .adventure-card h2 {
         font-size: 4rem;
         line-height: 1;
-        margin-bottom: 25px;
-        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        color: white;
+        margin-bottom: 28px;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+
+      /* BIG ICON */
+      .big-emoji {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 110px;
+        z-index: 1;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
+        animation: floatIcon 4s ease-in-out infinite;
+      }
+
+      @keyframes floatIcon {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(-5deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(3deg);
+        }
       }
 
       .menu {
         display: flex;
         flex-direction: column;
         gap: 18px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .menu a {
+        text-decoration: none;
       }
 
       .menu-item {
         background: white;
-        color: #222;
-        border-radius: 20px;
+        border-radius: 22px;
         padding: 18px 22px;
-        font-size: 1.5rem;
-        font-weight: 700;
         display: flex;
         align-items: center;
-        gap: 16px;
-        cursor: pointer;
-        transition: 0.25s;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        gap: 15px;
+        transition: 0.28s;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
       }
 
       .menu-item:hover {
-        transform: translateX(10px);
+        transform: translateX(10px) scale(1.02);
       }
 
       .menu-icon {
         font-size: 2rem;
       }
 
-      .big-icon {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 6rem;
-        opacity: 0.25;
-        transform: rotate(-10deg);
+      .menu-text {
+        font-size: 1.45rem;
+        color: #222;
+        font-weight: 700;
+        line-height: 1.2;
       }
 
-      /* Footer */
+      /* ======================
+            FOOTER
+    ======================= */
+
       footer {
         text-align: center;
         padding: 25px;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         font-weight: 700;
         color: var(--brown);
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(10px);
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .title {
-          font-size: 3.5rem;
-        }
+      /* ======================
+          RESPONSIVE
+    ======================= */
 
+      @media (max-width: 768px) {
         .subtitle {
-          font-size: 1.7rem;
+          font-size: 1.5rem;
         }
 
         .description {
@@ -357,7 +421,7 @@
         }
 
         .section-title {
-          font-size: 2.3rem;
+          font-size: 2.2rem;
         }
 
         .card h3 {
@@ -372,21 +436,25 @@
           font-size: 3rem;
         }
 
-        .menu-item {
-          font-size: 1.2rem;
+        .menu-text {
+          font-size: 1.1rem;
+        }
+
+        .big-emoji {
+          font-size: 85px;
         }
       }
     </style>
   </head>
 
   <body>
-    <!-- Decorative Shapes -->
-    <div class="shape circle" style="top: 80px; left: 40px"></div>
-    <div class="shape triangle" style="top: 130px; right: 80px"></div>
-    <div class="shape square" style="top: 350px; left: 120px"></div>
-    <div class="shape circle" style="top: 600px; right: 120px"></div>
-    <div class="shape triangle" style="bottom: 180px; left: 90px"></div>
-    <div class="shape square" style="bottom: 90px; right: 150px"></div>
+    <!-- BACKGROUND SHAPES -->
+    <div class="bg-shape circle" style="top: 90px; left: 50px"></div>
+    <div class="bg-shape triangle" style="top: 140px; right: 100px"></div>
+    <div class="bg-shape square" style="top: 420px; left: 140px"></div>
+    <div class="bg-shape circle" style="top: 720px; right: 90px"></div>
+    <div class="bg-shape triangle" style="bottom: 250px; left: 90px"></div>
+    <div class="bg-shape square" style="bottom: 120px; right: 130px"></div>
 
     <div class="container">
       <!-- HERO -->
@@ -398,7 +466,10 @@
 
         <div class="subtitle">Matematika Kelas 3</div>
 
-        <h1 class="title">Unsur-unsur<br />Bangun Datar</h1>
+        <h1 class="title">
+          Unsur-unsur <br />
+          Bangun Datar
+        </h1>
 
         <p class="description">
           Garis, sudut, garis-garis tegak lurus, dan garis-garis sejajar
@@ -452,46 +523,56 @@
         <h2 class="section-title">🗺️ Pilih Petualanganmu!</h2>
 
         <div class="adventure-grid">
-          <!-- Materi -->
+          <!-- MATERI -->
           <div class="adventure-card materi">
-            <div class="big-icon">📚</div>
+            <div class="big-emoji">📚</div>
 
             <h2>Materi</h2>
 
             <div class="menu">
-              <div class="menu-item">
-                <span class="menu-icon">📏</span>
-                <span>1. Sisi Pada Bangun Datar</span>
-              </div>
+              <a href="/materi/sisi_bangun_datar.html">
+                <div class="menu-item">
+                  <div class="menu-icon">📏</div>
+                  <div class="menu-text">1. Sisi Pada Bangun Datar</div>
+                </div>
+              </a>
 
-              <div class="menu-item">
-                <span class="menu-icon">📐</span>
-                <span>2. Sudut Pada Bangun Datar</span>
-              </div>
+              <a href="/materi/sudut_bangun_datar.html">
+                <div class="menu-item">
+                  <div class="menu-icon">📐</div>
+                  <div class="menu-text">2. Sudut Pada Bangun Datar</div>
+                </div>
+              </a>
 
-              <div class="menu-item">
-                <span class="menu-icon">📊</span>
-                <span>3. Garis Tegak Lurus & Sejajar</span>
-              </div>
+              <a href="/materi/garis_tegak_lurus_sejajar.html">
+                <div class="menu-item">
+                  <div class="menu-icon">📊</div>
+                  <div class="menu-text">3. Garis Tegak Lurus & Sejajar</div>
+                </div>
+              </a>
             </div>
           </div>
 
-          <!-- Games -->
+          <!-- GAMES -->
           <div class="adventure-card games">
-            <div class="big-icon">🏆</div>
+            <div class="big-emoji">🏆</div>
 
             <h2>Games</h2>
 
             <div class="menu">
-              <div class="menu-item">
-                <span class="menu-icon">🪢</span>
-                <span>1. Tarik Tambang</span>
-              </div>
+              <a href="/games/tarik_tambang.html">
+                <div class="menu-item">
+                  <div class="menu-icon">🪢</div>
+                  <div class="menu-text">1. Tarik Tambang</div>
+                </div>
+              </a>
 
-              <div class="menu-item">
-                <span class="menu-icon">🏰</span>
-                <span>2. Castle Defend</span>
-              </div>
+              <a href="/games/castle_defend.html">
+                <div class="menu-item">
+                  <div class="menu-icon">🏰</div>
+                  <div class="menu-text">2. Castle Defend</div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -504,10 +585,10 @@
     </footer>
 
     <script>
-      // Animasi klik menu
-      const menuItems = document.querySelectorAll(".menu-item");
+      // Animasi klik
+      const items = document.querySelectorAll(".menu-item");
 
-      menuItems.forEach((item) => {
+      items.forEach((item) => {
         item.addEventListener("click", () => {
           item.animate(
             [
@@ -522,11 +603,11 @@
         });
       });
 
-      // Floating random effect
-      const shapes = document.querySelectorAll(".shape");
+      // Background floating random duration
+      const shapes = document.querySelectorAll(".bg-shape");
 
       shapes.forEach((shape, index) => {
-        shape.style.animationDuration = `${5 + index}s`;
+        shape.style.animationDuration = `${6 + index}s`;
       });
     </script>
   </body>

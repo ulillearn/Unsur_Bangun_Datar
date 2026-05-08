@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sudut pada Bangun Datar</title>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --purple: #8b3dff;
+        --purple2: #a855f7;
+        --purpleDark: #6d28d9;
+
+        --blue: #58c5ff;
+        --blue2: #7dd3fc;
+
+        --brown: #5f3415;
+
+        --yellow: #fff4be;
+        --yellow2: #ffe89a;
+
+        --white: #ffffff;
+
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        font-family: "Baloo 2", cursive;
+
+        background:
+          radial-gradient(circle at top left, #e8f6ff 0%, transparent 20%),
+          radial-gradient(circle at bottom right, #fff4bf 0%, transparent 20%),
+          linear-gradient(180deg, #fefcff 0%, #fff9f4 100%);
+
+        overflow-x: hidden;
+        color: var(--brown);
+      }
+
+      /* =========================
+            HEADER
+    ========================== */
+
+      header {
+        width: 100%;
+        min-height: 90px;
+
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 18px 45px;
+
+        position: sticky;
+        top: 0;
+        z-index: 999;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        text-decoration: none;
+        color: white;
+      }
+
+      .logo-icon {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 18px;
+        background: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 30px;
+      }
+
+      .logo-text {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+
+        padding: 10px 18px;
+        border-radius: 14px;
+
+        font-size: 1.08rem;
+        font-weight: 700;
+
+        transition: 0.25s;
+      }
+
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .active {
+        background: white;
+        color: #7c3aed;
+
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      }
+
+      /* =========================
+            CONTAINER
+    ========================== */
+
+      .container {
+        width: min(1250px, 92%);
+        margin: auto;
+        padding: 55px 0 100px;
+      }
+
+      /* =========================
+              HERO
+    ========================== */
+
+      .hero {
+        text-align: center;
+        margin-bottom: 80px;
+
+        animation: fadeDown 1s ease;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "📐";
+
+        position: absolute;
+        left: 5%;
+        top: 10%;
+
+        font-size: 90px;
+        opacity: 0.12;
+
+        transform: rotate(-20deg);
+      }
+
+      .hero::after {
+        content: "📏";
+
+        position: absolute;
+        right: 8%;
+        top: 18%;
+
+        font-size: 85px;
+        opacity: 0.12;
+
+        transform: rotate(15deg);
+      }
+
+      .hero h1 {
+        font-size: clamp(3.5rem, 7vw, 6rem);
+        line-height: 1;
+
+        font-weight: 800;
+        color: var(--purple);
+
+        text-shadow:
+          -5px -5px 0 white,
+          5px -5px 0 white,
+          -5px 5px 0 white,
+          5px 5px 0 white,
+          0 10px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero p {
+        margin-top: 18px;
+
+        font-size: 1.4rem;
+        font-weight: 700;
+
+        color: #7a4a22;
+      }
+
+      /* =========================
+            SECTION
+    ========================== */
+
+      .section {
+        margin-top: 90px;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        color: var(--purple);
+
+        font-weight: 800;
+
+        margin-bottom: 35px;
+        text-align: center;
+
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+
+        width: 150px;
+        height: 8px;
+
+        background: #ddd6fe;
+
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+
+        transform: translateX(-50%);
+        border-radius: 30px;
+      }
+
+      /* =========================
+          PENGERTIAN
+    ========================== */
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 35px;
+        align-items: center;
+      }
+
+      .intro-card {
+        background: linear-gradient(135deg, #fff9cb, #fff1a8);
+
+        border-radius: 40px;
+        padding: 45px;
+
+        box-shadow: var(--shadow);
+
+        position: relative;
+        overflow: hidden;
+      }
+
+      .intro-card::before {
+        content: "";
+
+        width: 180px;
+        height: 180px;
+
+        background: rgba(255, 255, 255, 0.35);
+
+        position: absolute;
+        top: -60px;
+        right: -60px;
+
+        border-radius: 50%;
+      }
+
+      .intro-card p {
+        font-size: 1.9rem;
+        line-height: 1.5;
+        font-weight: 700;
+
+        position: relative;
+        z-index: 2;
+
+        text-align: center;
+      }
+
+      .example-card {
+        background: white;
+        border-radius: 40px;
+        padding: 35px;
+
+        box-shadow: var(--shadow);
+
+        text-align: center;
+      }
+
+      .example-card img {
+        width: 100%;
+        max-width: 350px;
+      }
+
+      .example-title {
+        display: inline-block;
+
+        background: linear-gradient(135deg, #8b3dff, #a855f7);
+
+        color: white;
+
+        padding: 12px 24px;
+        border-radius: 18px;
+
+        font-size: 1.5rem;
+        font-weight: 800;
+
+        margin-bottom: 25px;
+
+        box-shadow: 0 8px 15px rgba(139, 61, 255, 0.25);
+      }
+
+      /* =========================
+            JENIS SUDUT
+    ========================== */
+
+      .angle-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .angle-card {
+        background: white;
+
+        border-radius: 35px;
+        padding: 35px;
+
+        box-shadow: var(--shadow);
+
+        transition: 0.35s;
+
+        position: relative;
+        overflow: hidden;
+
+        text-align: center;
+      }
+
+      .angle-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .angle-card::before {
+        content: "";
+
+        width: 180px;
+        height: 180px;
+
+        background: #ede9fe;
+
+        border-radius: 50%;
+
+        position: absolute;
+        top: -70px;
+        right: -70px;
+      }
+
+      .number {
+        width: 75px;
+        height: 75px;
+
+        border-radius: 50%;
+
+        background: linear-gradient(135deg, #60a5fa, #38bdf8);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+
+        font-size: 2rem;
+        font-weight: 800;
+
+        margin: 0 auto 20px;
+
+        position: relative;
+        z-index: 2;
+
+        box-shadow: 0 8px 15px rgba(56, 189, 248, 0.25);
+      }
+
+      .angle-card h3 {
+        font-size: 2.2rem;
+        color: var(--purple);
+
+        margin-bottom: 20px;
+
+        position: relative;
+        z-index: 2;
+      }
+
+      .angle-card img {
+        width: 100%;
+        max-width: 230px;
+
+        margin-bottom: 18px;
+
+        position: relative;
+        z-index: 2;
+      }
+
+      .angle-size {
+        display: inline-block;
+
+        background: linear-gradient(135deg, #fff4ca, #ffe79f);
+
+        color: #7a4317;
+
+        padding: 10px 22px;
+
+        border-radius: 18px;
+
+        font-size: 1.5rem;
+        font-weight: 800;
+
+        margin-bottom: 18px;
+
+        position: relative;
+        z-index: 2;
+      }
+
+      .angle-card p {
+        font-size: 1.3rem;
+        line-height: 1.45;
+        font-weight: 700;
+
+        position: relative;
+        z-index: 2;
+      }
+
+      /* =========================
+          BUSUR DERAJAT
+    ========================== */
+
+      .measure-grid {
+        display: grid;
+        gap: 35px;
+      }
+
+      .measure-card {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 35px;
+
+        align-items: center;
+
+        background: white;
+
+        border-radius: 35px;
+        padding: 35px;
+
+        box-shadow: var(--shadow);
+
+        transition: 0.35s;
+      }
+
+      .measure-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .measure-card img {
+        width: 100%;
+        border-radius: 25px;
+      }
+
+      .measure-info h3 {
+        font-size: 2.3rem;
+        color: var(--purple);
+
+        margin-bottom: 18px;
+      }
+
+      .measure-info p {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        font-weight: 700;
+
+        margin-bottom: 20px;
+      }
+
+      .angle-result {
+        display: inline-block;
+
+        background: linear-gradient(135deg, #8b3dff, #a855f7);
+
+        color: white;
+
+        padding: 14px 24px;
+        border-radius: 20px;
+
+        font-size: 1.5rem;
+        font-weight: 800;
+
+        box-shadow: 0 8px 15px rgba(139, 61, 255, 0.25);
+      }
+
+      /* =========================
+            FOOTER
+    ========================== */
+
+      footer {
+        margin-top: 90px;
+
+        text-align: center;
+
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        color: #7a4317;
+      }
+
+      /* =========================
+            ANIMATION
+    ========================== */
+
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =========================
+            RESPONSIVE
+    ========================== */
+
+      @media (max-width: 950px) {
+        header {
+          flex-direction: column;
+          gap: 18px;
+          padding: 20px;
+        }
+
+        .intro-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .measure-card {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 4rem;
+        }
+
+        .intro-card p {
+          font-size: 1.5rem;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+
+    <header>
+      <a href="/index.html" class="logo">
+        <div class="logo-icon">📘</div>
+
+        <div class="logo-text">Bangun Datar</div>
+      </a>
+
+      <nav>
+        <a href="/index.html"> 🏠 Beranda </a>
+
+        <a href="/materi/sisi_bangun_datar.html"> 📏 Sisi </a>
+
+        <a href="/materi/sudut_bangun_datar.html" class="active"> 📐 Sudut </a>
+
+        <a href="/materi/garis_tegak_lurus_sejajar.html"> 📊 Garis </a>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+
+    <div class="container">
+      <!-- HERO -->
+
+      <section class="hero">
+        <h1>
+          Sudut pada <br />
+          Bangun Datar
+        </h1>
+
+        <p>
+          Belajar mengenal sudut, jenis-jenis sudut, dan cara mengukur besar
+          sudut
+        </p>
+      </section>
+
+      <!-- PENGERTIAN -->
+
+      <section class="section">
+        <h2 class="section-title">Apa itu Sudut?</h2>
+
+        <div class="intro-grid">
+          <div class="intro-card">
+            <p>
+              Sudut adalah ruang yang terbentuk dari dua garis, ruas garis, atau
+              sinar garis yang bertemu pada satu titik yang sama. Titik
+              pertemuan tersebut disebut titik sudut.
+            </p>
+          </div>
+
+          <div class="example-card">
+            <div class="example-title">Contoh Sudut</div>
+
+            <img src="img_segitiga.png" alt="Contoh Sudut" />
+          </div>
+        </div>
+      </section>
+
+      <!-- PEMBAGIAN SUDUT -->
+
+      <section class="section">
+        <h2 class="section-title">Pembagian Sudut</h2>
+
+        <div class="angle-grid">
+          <!-- CARD -->
+
+          <div class="angle-card">
+            <div class="number">1</div>
+
+            <h3>Siku-siku</h3>
+
+            <img src="sudut_siku.png" alt="Sudut Siku-siku" />
+
+            <div class="angle-size">Tepat 90°</div>
+
+            <p>Sudut siku-siku memiliki besar tepat 90 derajat.</p>
+          </div>
+
+          <!-- CARD -->
+
+          <div class="angle-card">
+            <div class="number">2</div>
+
+            <h3>Lancip</h3>
+
+            <img src="sudut_lancip.png" alt="Sudut Lancip" />
+
+            <div class="angle-size">Kurang dari 90°</div>
+
+            <p>Sudut lancip memiliki besar kurang dari 90 derajat.</p>
+          </div>
+
+          <!-- CARD -->
+
+          <div class="angle-card">
+            <div class="number">3</div>
+
+            <h3>Tumpul</h3>
+
+            <img src="sudut_tumpul.png" alt="Sudut Tumpul" />
+
+            <div class="angle-size">90° - 180°</div>
+
+            <p>
+              Sudut tumpul memiliki besar lebih dari 90 derajat tetapi kurang
+              dari 180 derajat.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUSUR DERAJAT -->
+
+      <section class="section">
+        <h2 class="section-title">Mengukur Sudut dengan Busur Derajat</h2>
+
+        <div class="measure-grid">
+          <!-- CARD -->
+
+          <div class="measure-card">
+            <img src="busur1.png" alt="Busur Derajat 1" />
+
+            <div class="measure-info">
+              <h3>Sudut Lancip</h3>
+
+              <p>
+                Sudut dapat dinyatakan menggunakan nama titik sudutnya. Pada
+                gambar di samping, sudut dapat dibaca sebagai:
+              </p>
+
+              <div class="angle-result">∠AOB = 30° atau ∠BOA = 30°</div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+
+          <div class="measure-card">
+            <img src="busur2.png" alt="Busur Derajat 2" />
+
+            <div class="measure-info">
+              <h3>Sudut Tumpul</h3>
+
+              <p>
+                Besar sudut juga dapat diukur menggunakan busur derajat. Pada
+                gambar di samping, besar sudutnya adalah:
+              </p>
+
+              <div class="angle-result">∠AOB = 120° atau ∠BOA = 120°</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>© 2026 • Materi Sudut Bangun Datar</footer>
+    </div>
+  </body>
+</html>

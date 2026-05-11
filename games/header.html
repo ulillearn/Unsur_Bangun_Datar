@@ -1,0 +1,136 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  /* =========================================
+       CSS KHUSUS NAVBAR
+       ========================================= */
+  .navbar {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 12px 25px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow:
+      0 8px 0px rgba(155, 81, 224, 0.15),
+      0 15px 25px rgba(0, 0, 0, 0.05);
+    border: 3px solid #f0e6ff;
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .navbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #9b51e0;
+    text-decoration: none;
+  }
+
+  .navbar .brand-icon {
+    background: #9b51e0;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    transform: rotate(-10deg);
+  }
+
+  .navbar .nav-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navbar .nav-link {
+    text-decoration: none;
+    color: #757575;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .navbar .nav-link:hover {
+    background-color: #f3e8ff;
+    color: #9b51e0;
+    transform: translateY(-2px);
+  }
+
+  /* Style untuk menu yang sedang aktif */
+  .navbar .nav-link.active {
+    background-color: #9b51e0;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
+  }
+
+  /* Responsive untuk HP dan Tablet */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 25px;
+    }
+    .navbar .nav-links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 480px) {
+    .navbar .nav-link {
+      padding: 8px 12px;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<!-- KODE HTML NAVBAR -->
+<nav class="navbar">
+  <a href="../index.html" class="brand">
+    <div class="brand-icon">📘</div>
+    Unsur Bangun Datar
+  </a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link">🏠 Beranda</a>
+    <a href="tarik_tambang.html" class="nav-link">Tarik Tambang</a>
+    <a href="castle_defend.html" class="nav-link">Castle Defend</a>
+  </div>
+</nav>
+
+<!-- SCRIPT UNTUK MENU AKTIF OTOMATIS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentUrl = window.location.href;
+    const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+    navLinks.forEach((link) => {
+      const linkHref = link.getAttribute("href");
+      // Cek apakah nama file ada di URL saat ini
+      if (currentUrl.includes(linkHref)) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  });
+</script>

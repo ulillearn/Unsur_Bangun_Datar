@@ -13,6 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       * {
@@ -47,79 +51,106 @@
         color: var(--brown);
       }
 
-      /* =========================
-            HEADER
-    ========================== */
-
-      header {
-        width: 100%;
-        min-height: 90px;
-        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      /* =========================================
+         CSS KHUSUS NAVBAR
+      ========================================= */
+      .navbar {
+        background-color: #ffffff;
+        width: 90%;
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 12px 25px;
+        border-radius: 50px;
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        padding: 18px 45px;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        align-items: center;
+        box-shadow:
+          0 8px 0px rgba(155, 81, 224, 0.15),
+          0 15px 25px rgba(0, 0, 0, 0.05);
+        border: 3px solid #f0e6ff;
+        z-index: 1000;
+        font-family: "Nunito", sans-serif;
       }
 
-      .logo {
+      .navbar .brand {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #9b51e0;
         text-decoration: none;
+      }
+
+      .navbar .brand-icon {
+        background: #9b51e0;
         color: white;
-      }
-
-      .logo-icon {
-        width: 58px;
-        height: 58px;
-        border-radius: 18px;
-        background: white;
+        width: 40px;
+        height: 40px;
         display: flex;
-        align-items: center;
         justify-content: center;
-        font-size: 30px;
+        align-items: center;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        transform: rotate(-10deg);
       }
 
-      .logo-text {
-        font-size: 1.7rem;
-        font-weight: 800;
-      }
-
-      nav {
+      .navbar .nav-links {
         display: flex;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 10px;
       }
 
-      nav a {
+      .navbar .nav-link {
         text-decoration: none;
-        color: white;
-        padding: 10px 18px;
-        border-radius: 14px;
-        font-size: 1.08rem;
+        color: #757575;
         font-weight: 700;
-        transition: 0.25s;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-family: "Nunito", sans-serif;
       }
 
-      nav a:hover {
-        background: rgba(255, 255, 255, 0.15);
+      .navbar .nav-link:hover {
+        background-color: #f3e8ff;
+        color: #9b51e0;
+        transform: translateY(-2px);
       }
 
-      .active {
-        background: white;
-        color: #7c3aed;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      /* Style untuk menu yang sedang aktif */
+      .navbar .nav-link.active {
+        background-color: #9b51e0;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
+      }
+
+      /* Responsive untuk HP dan Tablet (Navbar) */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px;
+          border-radius: 25px;
+        }
+        .navbar .nav-links {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+      @media (max-width: 480px) {
+        .navbar .nav-link {
+          padding: 8px 12px;
+          font-size: 0.95rem;
+        }
       }
 
       /* =========================
           MAIN CONTAINER
-    ========================== */
+      ========================== */
 
       .container {
         width: min(1250px, 92%);
@@ -129,7 +160,7 @@
 
       /* =========================
               HERO
-    ========================== */
+      ========================== */
 
       .hero {
         text-align: center;
@@ -181,7 +212,7 @@
 
       /* =========================
             SECTION
-    ========================== */
+      ========================== */
 
       .section {
         margin-top: 90px;
@@ -210,13 +241,13 @@
 
       /* =========================
             INTRO
-    ========================== */
+      ========================== */
 
       .intro-grid {
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
         gap: 35px;
-        align-items: stretch; /* Diubah agar tinggi kedua card sejajar */
+        align-items: stretch;
       }
 
       .intro-card {
@@ -250,7 +281,7 @@
 
       /* =========================
           CONTOH SISI
-    ========================== */
+      ========================== */
 
       .shape-card {
         background: white;
@@ -258,7 +289,6 @@
         padding: 35px;
         box-shadow: var(--shadow);
         position: relative;
-        /* Ditambahkan flexbox agar gambar berada tepat di tengah vertikal & horizontal */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -277,7 +307,6 @@
         box-shadow: 0 8px 15px rgba(139, 61, 255, 0.25);
       }
 
-      /* Class baru untuk mengontrol ukuran gambar contoh sisi */
       .shape-image {
         width: 100%;
         max-width: 300px;
@@ -288,7 +317,7 @@
 
       /* =========================
           TYPE CARD
-    ========================== */
+      ========================== */
 
       .type-grid {
         display: grid;
@@ -362,7 +391,7 @@
 
       /* =========================
             PENGGARIS
-    ========================== */
+      ========================== */
 
       .ruler-card {
         background: white;
@@ -394,7 +423,7 @@
 
       /* =========================
           CONTOH UKUR
-    ========================== */
+      ========================== */
 
       .example-grid {
         display: grid;
@@ -451,7 +480,7 @@
 
       /* =========================
             FOOTER
-    ========================== */
+      ========================== */
 
       footer {
         margin-top: 90px;
@@ -463,7 +492,7 @@
 
       /* =========================
             ANIMATION
-    ========================== */
+      ========================== */
 
       @keyframes fadeDown {
         from {
@@ -478,16 +507,10 @@
       }
 
       /* =========================
-            RESPONSIVE
-    ========================== */
+            RESPONSIVE MAIN CONTENT
+      ========================== */
 
       @media (max-width: 950px) {
-        header {
-          flex-direction: column;
-          gap: 18px;
-          padding: 20px;
-        }
-
         .intro-grid {
           grid-template-columns: 1fr;
         }
@@ -512,19 +535,18 @@
   </head>
 
   <body>
-    <header>
-      <a href="/index.html" class="logo">
-        <div class="logo-icon">📘</div>
-        <div class="logo-text">Bangun Datar</div>
+    <nav class="navbar">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">📘</div>
+        Unsur Bangun Datar
       </a>
-
-      <nav>
-        <a href="/index.html"> 🏠 Beranda </a>
-        <a href="/materi/sisi_bangun_datar.html" class="active"> 📏 Sisi </a>
-        <a href="/materi/sudut_bangun_datar.html"> 📐 Sudut </a>
-        <a href="/materi/garis_tegak_lurus_sejajar.html"> 📊 Garis </a>
-      </nav>
-    </header>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">🏠 Beranda</a>
+        <a href="sisi_bangun_datar.html" class="nav-link">Sisi</a>
+        <a href="sudut_bangun_datar.html" class="nav-link">Sudut</a>
+        <a href="garis_tegak_lurus_sejajar.html" class="nav-link">Garis</a>
+      </div>
+    </nav>
 
     <div class="container">
       <section class="hero">
@@ -657,5 +679,22 @@
         </div>
       </section>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentUrl = window.location.href;
+        const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+        navLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+          // Cek apakah nama file (misal: sisi.html) ada di URL saat ini
+          if (currentUrl.includes(linkHref)) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

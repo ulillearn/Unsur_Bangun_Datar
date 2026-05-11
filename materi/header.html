@@ -1,136 +1,137 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
+  rel="stylesheet"
+/>
 
-    <title>Header Materi</title>
+<style>
+  /* =========================================
+       CSS KHUSUS NAVBAR
+       ========================================= */
+  .navbar {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 12px 25px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow:
+      0 8px 0px rgba(155, 81, 224, 0.15),
+      0 15px 25px rgba(0, 0, 0, 0.05);
+    border: 3px solid #f0e6ff;
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    font-family: "Nunito", sans-serif;
+  }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  .navbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #9b51e0;
+    text-decoration: none;
+  }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+  .navbar .brand-icon {
+    background: #9b51e0;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    transform: rotate(-10deg);
+  }
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  .navbar .nav-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navbar .nav-link {
+    text-decoration: none;
+    color: #757575;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .navbar .nav-link:hover {
+    background-color: #f3e8ff;
+    color: #9b51e0;
+    transform: translateY(-2px);
+  }
+
+  /* Style untuk menu yang sedang aktif */
+  .navbar .nav-link.active {
+    background-color: #9b51e0;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
+  }
+
+  /* Responsive untuk HP dan Tablet */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 25px;
+    }
+    .navbar .nav-links {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 480px) {
+    .navbar .nav-link {
+      padding: 8px 12px;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<!-- KODE HTML NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-icon">📘</div>
+    Unsur Bangun Datar
+  </a>
+  <div class="nav-links">
+    <a href="/index.html" class="nav-link">🏠 Beranda</a>
+    <a href="/materi/sisi_bangun_datar.html" class="nav-link">Sisi</a>
+    <a href="/materi/sudut_bangun_datar.html" class="nav-link">Sudut</a>
+    <a href="/materi/garis_tegak_lurus_sejajar.html" class="nav-link">Garis</a>
+  </div>
+</nav>
+
+<!-- SCRIPT UNTUK MENU AKTIF OTOMATIS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentUrl = window.location.href;
+    const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+    navLinks.forEach((link) => {
+      const linkHref = link.getAttribute("href");
+      // Cek apakah nama file (misal: sisi.html) ada di URL saat ini
+      if (currentUrl.includes(linkHref)) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
       }
-
-      body {
-        font-family: "Baloo 2", cursive;
-      }
-
-      header {
-        width: 100%;
-        height: 90px;
-        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 45px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-        position: sticky;
-        top: 0;
-        z-index: 999;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        color: white;
-        text-decoration: none;
-      }
-
-      .logo-icon {
-        width: 55px;
-        height: 55px;
-        border-radius: 18px;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      }
-
-      .logo-text {
-        font-size: 1.7rem;
-        font-weight: 800;
-        line-height: 1;
-      }
-
-      nav {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      nav a {
-        text-decoration: none;
-        color: white;
-        font-size: 1.15rem;
-        font-weight: 700;
-        padding: 10px 20px;
-        border-radius: 14px;
-        transition: 0.25s;
-      }
-
-      nav a:hover {
-        background: rgba(255, 255, 255, 0.18);
-        transform: translateY(-2px);
-      }
-
-      .active {
-        background: white;
-        color: #7c3aed;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-      }
-
-      @media (max-width: 900px) {
-        header {
-          height: auto;
-          padding: 20px;
-          flex-direction: column;
-          gap: 18px;
-        }
-
-        .logo {
-          width: 100%;
-          justify-content: center;
-        }
-
-        nav {
-          justify-content: center;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <a href="/index.html" class="logo">
-        <div class="logo-icon">📘</div>
-
-        <div class="logo-text">Bangun Datar</div>
-      </a>
-
-      <nav>
-        <a href="/index.html"> 🏠 Beranda </a>
-
-        <a href="/materi/sisi_bangun_datar.html" class="active"> 📏 Sisi </a>
-
-        <a href="/materi/sudut_bangun_datar.html"> 📐 Sudut </a>
-
-        <a href="/materi/garis_tegak_lurus_sejajar.html"> 📊 Garis </a>
-      </nav>
-    </header>
-  </body>
-</html>
+    });
+  });
+</script>

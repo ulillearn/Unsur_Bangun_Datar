@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TTS Bangun Datar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --purple: #8b3dff;
+        --purple2: #a855f7;
+        --purpleDark: #6d28d9;
+        --blue: #3b82f6;
+        --brown: #5f3415;
+        --green: #22c55e;
+        --bg-color: #f8fafc;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        font-family: "Baloo 2", cursive;
+        background:
+          radial-gradient(circle at top left, #dbeafe 0%, transparent 20%),
+          radial-gradient(circle at bottom right, #fce7f3 0%, transparent 20%),
+          linear-gradient(180deg, #fffaff 0%, #fff7f1 100%);
+        overflow-x: hidden;
+        color: var(--brown);
+        min-height: 100vh;
+      }
+
+      /* =========================================
+         CSS KHUSUS NAVBAR
+      ========================================= */
+      .navbar {
+        background-color: #ffffff;
+        width: 90%;
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 12px 25px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow:
+          0 8px 0px rgba(155, 81, 224, 0.15),
+          0 15px 25px rgba(0, 0, 0, 0.05);
+        border: 3px solid #f0e6ff;
+        z-index: 1000;
+        font-family: "Nunito", sans-serif;
+      }
+
+      .navbar .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #9b51e0;
+        text-decoration: none;
+      }
+
+      .navbar .brand-icon {
+        background: #9b51e0;
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        transform: rotate(-10deg);
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .navbar .nav-link {
+        text-decoration: none;
+        color: #757575;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-family: "Nunito", sans-serif;
+      }
+
+      .navbar .nav-link:hover {
+        background-color: #f3e8ff;
+        color: #9b51e0;
+        transform: translateY(-2px);
+      }
+
+      .navbar .nav-link.active {
+        background-color: #9b51e0;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px;
+          border-radius: 25px;
+        }
+        .navbar .nav-links {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+      @media (max-width: 480px) {
+        .navbar .nav-link {
+          padding: 8px 12px;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* =========================
+          MAIN CONTAINER
+      ========================== */
+
+      .container {
+        width: min(1250px, 96%);
+        margin: auto;
+        padding: 20px 0 100px;
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .title h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.1;
+        font-weight: 800;
+        color: var(--purple);
+        text-shadow:
+          -4px -4px 0 white,
+          4px -4px 0 white,
+          -4px 4px 0 white,
+          4px 4px 0 white,
+          0 10px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .title p {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #7a4a22;
+        margin-top: 10px;
+      }
+
+      /* =========================
+          LAYOUT TTS
+      ========================== */
+
+      .game-layout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+
+      /* PAPAN TTS */
+      .board-wrapper {
+        background: white;
+        padding: 25px;
+        border-radius: 35px;
+        box-shadow: var(--shadow);
+        border: 4px solid #f3e8ff;
+        overflow-x: auto; /* Agar bisa digeser di HP */
+      }
+
+      .tts-board {
+        display: grid;
+        /* Grid 23 Kolom x 22 Baris */
+        grid-template-columns: repeat(23, 35px);
+        grid-template-rows: repeat(22, 35px);
+        gap: 0;
+        width: max-content;
+        margin: auto;
+      }
+
+      .tts-cell {
+        width: 35px;
+        height: 35px;
+        border: 1px solid #94a3b8;
+        background: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .empty-cell {
+        background: transparent;
+        border: none;
+      }
+
+      .tts-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: transparent;
+        color: var(--purpleDark);
+        cursor: pointer;
+        padding-top: 8px; /* Memberi ruang untuk angka di pojok */
+      }
+
+      .tts-input:focus {
+        background: #fdf4ff;
+      }
+
+      .tts-input.correct {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .tts-input.wrong {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .tts-number {
+        position: absolute;
+        top: 2px;
+        left: 3px;
+        font-size: 11px;
+        line-height: 1;
+        font-weight: 800;
+        color: #64748b;
+        font-family: "Nunito", sans-serif;
+        pointer-events: none;
+      }
+
+      .highlight-word {
+        background: #fdf4ff !important;
+      }
+
+      /* =========================
+          DAFTAR SOAL (CLUES)
+      ========================== */
+      .clues-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .clue-box {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .clue-title {
+        display: inline-block;
+        background: linear-gradient(135deg, #8b3dff, #a855f7);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 15px;
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(139, 61, 255, 0.25);
+      }
+
+      .clue-title.menurun {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.25);
+      }
+
+      .clue-list {
+        list-style: none;
+      }
+
+      .clue-item {
+        font-size: 1.15rem;
+        line-height: 1.4;
+        font-weight: 600;
+        margin-bottom: 12px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        gap: 12px;
+      }
+
+      .clue-item:hover {
+        background: #f1f5f9;
+        transform: translateX(5px);
+      }
+
+      .clue-item.active {
+        background: #f3e8ff;
+        border-left: 4px solid var(--purple);
+      }
+
+      .clue-num {
+        font-weight: 900;
+        color: var(--purple);
+        font-family: "Nunito", sans-serif;
+      }
+
+      /* =========================
+          TOMBOL CEK JAWABAN
+      ========================== */
+      .btn-check {
+        width: 100%;
+        background: linear-gradient(135deg, #34d399, #10b981);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 20px;
+        font-size: 1.5rem;
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        transition: 0.2s;
+        margin-top: 10px;
+      }
+
+      .btn-check:hover {
+        transform: scale(1.02);
+      }
+
+      /* ALERT HASIL */
+      .result-alert {
+        display: none;
+        text-align: center;
+        background: #dcfce7;
+        color: #166534;
+        padding: 20px;
+        border-radius: 20px;
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-top: 20px;
+        border: 2px solid #4ade80;
+        animation: pop 0.4s ease;
+      }
+
+      @keyframes pop {
+        0% {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* =========================
+          RESPONSIVE
+      ========================== */
+      @media (max-width: 1100px) {
+        .game-layout {
+          grid-template-columns: 1fr;
+        }
+        .board-wrapper {
+          order: 1;
+        }
+        .clues-wrapper {
+          order: 2;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">🎮</div>
+        Games Bangun Datar
+      </a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">🏠 Beranda</a>
+        <a href="tarik_tambang.html" class="nav-link">🪢 Tarik Tambang</a>
+        <a href="tts_bangun_datar.html" class="nav-link active"
+          >📝 Teka Teki Silang</a
+        >
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="title">
+        <h1>Teka Teki Silang</h1>
+        <p>
+          Ayo uji pengetahuanmu tentang bangun datar dengan mengisi teka-teki di
+          bawah ini!
+        </p>
+      </div>
+
+      <div class="game-layout">
+        <div class="board-wrapper">
+          <div class="tts-board" id="ttsBoard"></div>
+        </div>
+
+        <div class="clues-wrapper">
+          <div class="clue-box">
+            <div class="clue-title">➡ Mendatar (Horizontal)</div>
+            <ul class="clue-list" id="acrossClues"></ul>
+          </div>
+
+          <div class="clue-box">
+            <div class="clue-title menurun">⬇ Menurun (Vertikal)</div>
+            <ul class="clue-list" id="downClues"></ul>
+          </div>
+
+          <button class="btn-check" onclick="checkAnswers()">
+            ✨ Cek Jawabanku ✨
+          </button>
+
+          <div class="result-alert" id="resultAlert">
+            Luar Biasa! Semua jawabanmu benar! 🎉
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 1. DATA KATA DAN SOAL (Sudah dihitung koordinat silangnya agar pas)
+      const wordsData = [
+        {
+          id: "1A",
+          num: 1,
+          dir: "A",
+          r: 2,
+          c: 2,
+          text: "PERSEGI",
+          clue: "Memiliki 4 sisi sama panjang & 4 sudut siku-siku",
+        },
+        {
+          id: "2A",
+          num: 2,
+          dir: "A",
+          r: 2,
+          c: 11,
+          text: "JAJARGENJANG",
+          clue: "Jajar genjang yang sudutnya tidak siku-siku",
+        },
+        {
+          id: "3A",
+          num: 3,
+          dir: "A",
+          r: 12,
+          c: 4,
+          text: "LINGKARAN",
+          clue: "Bangun datar tanpa sudut & simetri tak terhingga",
+        },
+        {
+          id: "4A",
+          num: 4,
+          dir: "A",
+          r: 15,
+          c: 0,
+          text: "SAMAKAKI",
+          clue: "Segitiga yang memiliki 2 sisi sama panjang",
+        },
+        {
+          id: "5A",
+          num: 5,
+          dir: "A",
+          r: 6,
+          c: 3,
+          text: "TRAPESIUM",
+          clue: "Segi empat yang memiliki sepasang sisi sejajar",
+        },
+
+        {
+          id: "6D",
+          num: 6,
+          dir: "D",
+          r: 6,
+          c: 1,
+          text: "LAYANGLAYANG",
+          clue: "Punya 2 pasang sisi sama panjang, diagonal tegak lurus",
+        },
+        {
+          id: "7D",
+          num: 7,
+          dir: "D",
+          r: 0,
+          c: 12,
+          text: "DIAGONAL",
+          clue: "Garis yang menghubungkan titik sudut berhadapan",
+        },
+        {
+          id: "8D",
+          num: 8,
+          dir: "D",
+          r: 6,
+          c: 8,
+          text: "SIKUSIKU",
+          clue: "Segitiga dengan salah satu sudut 90 derajat",
+        },
+        {
+          id: "9D",
+          num: 9,
+          dir: "D",
+          r: 10,
+          c: 4,
+          text: "BELAHKETUPAT",
+          clue: "Segi empat dengan 4 sisi sama panjang (mirip ketupat)",
+        },
+        {
+          id: "10D",
+          num: 10,
+          dir: "D",
+          r: 0,
+          c: 4,
+          text: "JARIJARI",
+          clue: "Jarak dari titik pusat ke tepi lingkaran",
+        },
+      ];
+
+      // 2. PERSIAPAN GRID (22 Baris x 23 Kolom)
+      const gridRows = 22;
+      const gridCols = 23;
+      const grid = Array.from({ length: gridRows }, () =>
+        Array(gridCols).fill(null),
+      );
+
+      // 3. MASUKKAN KATA KE DALAM GRID
+      wordsData.forEach((w) => {
+        let r = w.r,
+          c = w.c;
+        for (let i = 0; i < w.text.length; i++) {
+          if (!grid[r][c]) {
+            grid[r][c] = { letter: w.text[i], num: null, words: [] };
+          }
+          // Beri nomor hanya di huruf pertama
+          if (i === 0) grid[r][c].num = w.num;
+
+          grid[r][c].words.push(w.id);
+
+          // Geser koordinat
+          if (w.dir === "A") c++;
+          else r++;
+        }
+      });
+
+      // 4. RENDER KE HTML
+      const ttsBoard = document.getElementById("ttsBoard");
+      const acrossClues = document.getElementById("acrossClues");
+      const downClues = document.getElementById("downClues");
+
+      // Render Grid
+      for (let r = 0; r < gridRows; r++) {
+        for (let c = 0; c < gridCols; c++) {
+          const cellData = grid[r][c];
+          const div = document.createElement("div");
+
+          if (!cellData) {
+            div.className = "empty-cell";
+          } else {
+            div.className = "tts-cell";
+            // Gabung ID kata menjadi string untuk mempermudah deteksi
+            const wordIds = cellData.words.join(",");
+
+            // Buat Input
+            const input = document.createElement("input");
+            input.type = "text";
+            input.maxLength = 1;
+            input.className = "tts-input";
+            input.dataset.r = r;
+            input.dataset.c = c;
+            input.dataset.words = wordIds; // contoh: "1A,10D"
+            input.dataset.answer = cellData.letter;
+
+            // Navigasi ketik
+            input.addEventListener("input", function (e) {
+              this.classList.remove("wrong");
+              this.classList.remove("correct");
+              // Pindah ke kotak selanjutnya jika diisi
+              if (this.value) {
+                moveToNext(r, c, cellData.words[0]);
+              }
+            });
+
+            // Klik input untuk highlight clue
+            input.addEventListener("focus", function () {
+              highlightWord(cellData.words[0]);
+            });
+
+            div.appendChild(input);
+
+            // Buat Nomor Sudut
+            if (cellData.num) {
+              const numSpan = document.createElement("span");
+              numSpan.className = "tts-number";
+              numSpan.innerText = cellData.num;
+              div.appendChild(numSpan);
+            }
+          }
+          ttsBoard.appendChild(div);
+        }
+      }
+
+      // Render Clues (Soal)
+      wordsData.forEach((w) => {
+        const li = document.createElement("li");
+        li.className = "clue-item";
+        li.id = `clue-${w.id}`;
+        li.innerHTML = `<span class="clue-num">${w.num}.</span> <span class="clue-text">${w.clue}</span>`;
+
+        // Klik clue akan fokus ke input pertama kata tersebut
+        li.addEventListener("click", () => {
+          highlightWord(w.id);
+          const firstInput = document.querySelector(
+            `input[data-r='${w.r}'][data-c='${w.c}']`,
+          );
+          if (firstInput) firstInput.focus();
+        });
+
+        if (w.dir === "A") {
+          acrossClues.appendChild(li);
+        } else {
+          downClues.appendChild(li);
+        }
+      });
+
+      // 5. FUNGSI NAVIGASI & HIGHLIGHT
+      function highlightWord(wordId) {
+        // Hapus semua highlight aktif
+        document
+          .querySelectorAll(".clue-item")
+          .forEach((el) => el.classList.remove("active"));
+        document
+          .querySelectorAll(".tts-input")
+          .forEach((el) => el.classList.remove("highlight-word"));
+
+        // Tambah highlight pada clue & grid
+        const clueEl = document.getElementById(`clue-${wordId}`);
+        if (clueEl) clueEl.classList.add("active");
+
+        const inputs = document.querySelectorAll(`.tts-input`);
+        inputs.forEach((input) => {
+          if (input.dataset.words.includes(wordId)) {
+            input.classList.add("highlight-word");
+          }
+        });
+      }
+
+      function moveToNext(r, c, wordId) {
+        const wordInfo = wordsData.find((w) => w.id === wordId);
+        if (!wordInfo) return;
+
+        let nextR = r,
+          nextC = c;
+        if (wordInfo.dir === "A") nextC++;
+        else nextR++;
+
+        const nextInput = document.querySelector(
+          `input[data-r='${nextR}'][data-c='${nextC}']`,
+        );
+        if (nextInput && nextInput.dataset.words.includes(wordId)) {
+          nextInput.focus();
+        }
+      }
+
+      // 6. FUNGSI CEK JAWABAN
+      function checkAnswers() {
+        const inputs = document.querySelectorAll(".tts-input");
+        let allCorrect = true;
+        let isFullyFilled = true;
+
+        inputs.forEach((input) => {
+          const userAnswer = input.value.toUpperCase();
+          const correctAnswer = input.dataset.answer;
+
+          if (userAnswer === "") {
+            isFullyFilled = false;
+            allCorrect = false;
+          } else if (userAnswer === correctAnswer) {
+            input.classList.add("correct");
+            input.classList.remove("wrong");
+          } else {
+            input.classList.add("wrong");
+            input.classList.remove("correct");
+            allCorrect = false;
+          }
+        });
+
+        const alertBox = document.getElementById("resultAlert");
+        if (allCorrect && isFullyFilled) {
+          alertBox.style.display = "block";
+          alertBox.innerText = "Luar Biasa! Semua jawabanmu benar! 🎉";
+          alertBox.style.background = "#dcfce7";
+          alertBox.style.color = "#166534";
+          alertBox.style.borderColor = "#4ade80";
+        } else if (!isFullyFilled) {
+          alertBox.style.display = "block";
+          alertBox.innerText = "Ayo, masih ada kotak yang kosong. Semangat! 💪";
+          alertBox.style.background = "#fef08a";
+          alertBox.style.color = "#854d0e";
+          alertBox.style.borderColor = "#facc15";
+        } else {
+          alertBox.style.display = "block";
+          alertBox.innerText =
+            "Ups! Masih ada yang kurang tepat. Coba periksa lagi ya! 🧐";
+          alertBox.style.background = "#fee2e2";
+          alertBox.style.color = "#991b1b";
+          alertBox.style.borderColor = "#f87171";
+        }
+      }
+    </script>
+  </body>
+</html>

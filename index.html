@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unsur-unsur Bangun Datar</title>
 
-    <!-- FONT -->
+    <title>TTS Bangun Datar</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -21,601 +26,867 @@
       }
 
       :root {
-        --purple: #8a35d4;
-        --purpleDark: #6822a7;
-        --brown: #5d3418;
-        --white: #ffffff;
-
-        --green1: #97f43d;
-        --green2: #53c91f;
-
-        --blue1: #17c4ff;
-        --blue2: #16d6a8;
-
-        --bg1: #fffaf4;
-        --bg2: #f5eee4;
+        --purple: #8b3dff;
+        --purple2: #a855f7;
+        --purpleDark: #6d28d9;
+        --blue: #3b82f6;
+        --brown: #5f3415;
+        --green: #22c55e;
+        --bg-color: #f8fafc;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       }
 
       body {
         font-family: "Baloo 2", cursive;
         background:
-          radial-gradient(circle at top left, #ffffff 0%, transparent 25%),
-          radial-gradient(circle at bottom right, #fff5dd 0%, transparent 20%),
-          linear-gradient(180deg, #fffdf8 0%, #f6efe5 100%);
+          radial-gradient(circle at top left, #dbeafe 0%, transparent 20%),
+          radial-gradient(circle at bottom right, #fce7f3 0%, transparent 20%),
+          linear-gradient(180deg, #fffaff 0%, #fff7f1 100%);
         overflow-x: hidden;
         color: var(--brown);
-        position: relative;
         min-height: 100vh;
       }
 
-      /* ======================
-        BACKGROUND ELEMENT
-    ======================= */
-
-      .bg-shape {
-        position: absolute;
-        z-index: 0;
-        opacity: 0.13;
-        animation: float 8s ease-in-out infinite;
-      }
-
-      .circle {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: #caa4ff;
-      }
-
-      .square {
-        width: 60px;
-        height: 60px;
-        background: #9de7ff;
-        transform: rotate(25deg);
-        border-radius: 10px;
-      }
-
-      .triangle {
-        width: 0;
-        height: 0;
-        border-left: 40px solid transparent;
-        border-right: 40px solid transparent;
-        border-bottom: 70px solid #ffd17f;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-15px) rotate(8deg);
-        }
-      }
-
-      /* ======================
-          MAIN CONTAINER
-    ======================= */
-
-      .container {
-        width: min(1200px, 92%);
-        margin: auto;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* ======================
-            HERO
-    ======================= */
-
-      .hero {
-        text-align: center;
-        padding: 60px 0 30px;
-      }
-
-      .badge {
-        width: 120px;
-        height: 120px;
-        margin: auto;
-        border-radius: 50%;
-        background: linear-gradient(145deg, #d6ff89, #7be032);
-        border: 8px solid white;
+      /* =========================================
+         CSS KHUSUS NAVBAR
+      ========================================= */
+      .navbar {
+        background-color: #ffffff;
+        width: 90%;
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 12px 25px;
+        border-radius: 50px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
         box-shadow:
-          0 10px 25px rgba(0, 0, 0, 0.12),
-          inset 0 0 10px rgba(255, 255, 255, 0.8);
-        animation: bounce 3s infinite;
+          0 8px 0px rgba(155, 81, 224, 0.15),
+          0 15px 25px rgba(0, 0, 0, 0.05);
+        border: 3px solid #f0e6ff;
+        z-index: 1000;
+        font-family: "Nunito", sans-serif;
       }
 
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .badge span:nth-child(1) {
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 1;
-      }
-
-      .badge span:nth-child(2) {
-        font-size: 46px;
-        font-weight: 800;
-        line-height: 1;
-      }
-
-      .subtitle {
-        margin-top: 20px;
-        font-size: 2rem;
-        font-weight: 700;
-      }
-
-      .title {
-        font-size: clamp(3.5rem, 7vw, 6.2rem);
-        line-height: 1;
-        margin-top: 12px;
-        font-weight: 800;
-        color: var(--purple);
-
-        text-shadow:
-          -5px -5px 0 white,
-          5px -5px 0 white,
-          -5px 5px 0 white,
-          5px 5px 0 white,
-          0 8px 18px rgba(0, 0, 0, 0.15);
-      }
-
-      .description {
-        margin-top: 18px;
-        font-size: 1.5rem;
-        font-weight: 700;
-        line-height: 1.4;
-      }
-
-      .author {
-        margin-top: 16px;
-        font-size: 1.2rem;
-        font-weight: 700;
-      }
-
-      /* ======================
-        SECTION TITLE
-    ======================= */
-
-      .section-title {
-        text-align: center;
-        font-size: 3rem;
-        color: var(--purple);
-        margin: 65px 0 35px;
-        font-weight: 800;
-        position: relative;
-      }
-
-      .section-title::after {
-        content: "";
-        width: 130px;
-        height: 8px;
-        background: linear-gradient(to right, var(--purple), #d7a4ff);
-        position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 20px;
-      }
-
-      /* ======================
-          TUJUAN CARD
-    ======================= */
-
-      .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 28px;
-      }
-
-      .card {
-        background: white;
-        border-radius: 30px;
-        padding: 25px;
-        position: relative;
-        overflow: hidden;
-
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        transition: 0.35s;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        width: 140px;
-        height: 140px;
-        background: #f0ddff;
-        border-radius: 50%;
-        top: -45px;
-        right: -45px;
-      }
-
-      .icon-box {
-        width: 110px;
-        height: 110px;
-        border-radius: 25px;
-        background: linear-gradient(145deg, #f2e7ff, #e8d1ff);
+      .navbar .brand {
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 58px;
-        margin-bottom: 18px;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-        position: relative;
-        z-index: 2;
-      }
-
-      .card h3 {
-        font-size: 2rem;
-        line-height: 1.1;
-        margin-bottom: 12px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .card p {
-        font-size: 1.15rem;
-        line-height: 1.5;
-        font-weight: 600;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* ======================
-          PETUALANGAN
-    ======================= */
-
-      .adventure-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        gap: 30px;
-        padding-bottom: 80px;
-      }
-
-      .adventure-card {
-        border-radius: 35px;
-        padding: 35px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-        transition: 0.35s;
-      }
-
-      .adventure-card:hover {
-        transform: translateY(-10px);
-      }
-
-      .materi {
-        background:
-          radial-gradient(
-            circle at top left,
-            rgba(255, 255, 255, 0.35),
-            transparent 30%
-          ),
-          linear-gradient(135deg, var(--green2), var(--green1));
-      }
-
-      .games {
-        background:
-          radial-gradient(
-            circle at top left,
-            rgba(255, 255, 255, 0.35),
-            transparent 30%
-          ),
-          linear-gradient(135deg, var(--blue1), var(--blue2));
-      }
-
-      .adventure-card h2 {
-        font-size: 4rem;
-        line-height: 1;
-        color: white;
-        margin-bottom: 28px;
-        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        position: relative;
-        z-index: 2;
-      }
-
-      /* BIG ICON */
-      .big-emoji {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        font-size: 110px;
-        z-index: 1;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
-        animation: floatIcon 4s ease-in-out infinite;
-      }
-
-      @keyframes floatIcon {
-        0%,
-        100% {
-          transform: translateY(0px) rotate(-5deg);
-        }
-        50% {
-          transform: translateY(-10px) rotate(3deg);
-        }
-      }
-
-      .menu {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .menu a {
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #9b51e0;
         text-decoration: none;
       }
 
-      .menu-item {
-        background: white;
-        border-radius: 22px;
-        padding: 18px 22px;
+      .navbar .brand-icon {
+        background: #9b51e0;
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        transform: rotate(-10deg);
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .navbar .nav-link {
+        text-decoration: none;
+        color: #757575;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
         display: flex;
         align-items: center;
-        gap: 15px;
-        transition: 0.28s;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-family: "Nunito", sans-serif;
       }
 
-      .menu-item:hover {
-        transform: translateX(10px) scale(1.02);
+      .navbar .nav-link:hover {
+        background-color: #f3e8ff;
+        color: #9b51e0;
+        transform: translateY(-2px);
       }
 
-      .menu-icon {
-        font-size: 2rem;
+      .navbar .nav-link.active {
+        background-color: #9b51e0;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
       }
-
-      .menu-text {
-        font-size: 1.45rem;
-        color: #222;
-        font-weight: 700;
-        line-height: 1.2;
-      }
-
-      /* ======================
-            FOOTER
-    ======================= */
-
-      footer {
-        text-align: center;
-        padding: 25px;
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--brown);
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(10px);
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-      }
-
-      /* ======================
-          RESPONSIVE
-    ======================= */
 
       @media (max-width: 768px) {
-        .subtitle {
-          font-size: 1.5rem;
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px;
+          border-radius: 25px;
         }
-
-        .description {
-          font-size: 1.1rem;
+        .navbar .nav-links {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
         }
-
-        .section-title {
-          font-size: 2.2rem;
+      }
+      @media (max-width: 480px) {
+        .navbar .nav-link {
+          padding: 8px 12px;
+          font-size: 0.95rem;
         }
+      }
 
-        .card h3 {
-          font-size: 1.6rem;
+      /* =========================
+          MAIN CONTAINER
+      ========================== */
+
+      .container {
+        width: min(1250px, 96%);
+        margin: auto;
+        padding: 20px 0 100px;
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .title h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.1;
+        font-weight: 800;
+        color: var(--purple);
+        text-shadow:
+          -4px -4px 0 white,
+          4px -4px 0 white,
+          -4px 4px 0 white,
+          4px 4px 0 white,
+          0 10px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .title p {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #7a4a22;
+        margin-top: 10px;
+      }
+
+      /* =========================
+          LAYOUT TTS
+      ========================== */
+
+      .game-layout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+
+      /* PAPAN TTS */
+      .board-wrapper {
+        background: white;
+        padding: 25px;
+        border-radius: 35px;
+        box-shadow: var(--shadow);
+        border: 4px solid #f3e8ff;
+        overflow-x: auto;
+      }
+
+      .tts-board {
+        display: grid;
+        grid-template-columns: repeat(23, 35px);
+        grid-template-rows: repeat(22, 35px);
+        gap: 0;
+        width: max-content;
+        margin: auto;
+      }
+
+      .tts-cell {
+        width: 35px;
+        height: 35px;
+        border: 1px solid #94a3b8;
+        background: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .empty-cell {
+        background: transparent;
+        border: none;
+      }
+
+      .tts-input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        text-align: center;
+        font-size: 1.2rem;
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: transparent;
+        color: var(--purpleDark);
+        cursor: pointer;
+        padding-top: 8px;
+      }
+
+      .tts-input:focus {
+        background: #fdf4ff;
+      }
+
+      .tts-input.correct {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .tts-input.wrong {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .tts-number {
+        position: absolute;
+        top: 2px;
+        left: 3px;
+        font-size: 11px;
+        line-height: 1;
+        font-weight: 800;
+        color: #64748b;
+        font-family: "Nunito", sans-serif;
+        pointer-events: none;
+      }
+
+      .highlight-word {
+        background: #fdf4ff !important;
+      }
+
+      /* =========================
+          DAFTAR SOAL (CLUES)
+      ========================== */
+      .clues-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .clue-box {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      .clue-title {
+        display: inline-block;
+        background: linear-gradient(135deg, #8b3dff, #a855f7);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 15px;
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(139, 61, 255, 0.25);
+      }
+
+      .clue-title.menurun {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.25);
+      }
+
+      .clue-list {
+        list-style: none;
+      }
+
+      .clue-item {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        font-weight: 600;
+        margin-bottom: 12px;
+        padding: 10px 15px;
+        border-radius: 15px;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .clue-item:hover {
+        background: #f1f5f9;
+        transform: translateX(5px);
+      }
+
+      .clue-item.active {
+        background: #f3e8ff;
+        border-left: 4px solid var(--purple);
+      }
+
+      /* Status jika sudah benar */
+      .clue-item.done {
+        opacity: 0.6;
+        pointer-events: none;
+        background: #dcfce7;
+        border-left: 4px solid #22c55e;
+      }
+      .clue-item.done .btn-check-word {
+        display: none;
+      }
+      .clue-item.done::after {
+        content: "✔";
+        margin-left: auto;
+        font-size: 1.2rem;
+      }
+
+      .clue-num {
+        font-weight: 900;
+        color: var(--purple);
+        font-family: "Nunito", sans-serif;
+      }
+
+      .clue-text-wrap {
+        flex: 1;
+      }
+
+      /* TOMBOL CEK PER SOAL */
+      .btn-check-word {
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        color: white;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 12px;
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+        transition: 0.2s;
+      }
+
+      .btn-check-word:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+      }
+
+      /* =========================
+          POP-UP (MODAL)
+      ========================== */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none; /* diubah JS */
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        backdrop-filter: blur(3px);
+      }
+
+      .popup-box {
+        background: white;
+        padding: 40px;
+        border-radius: 30px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%;
+        animation: popUpAnim 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes popUpAnim {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
         }
-
-        .card p {
-          font-size: 1rem;
+        100% {
+          transform: scale(1);
+          opacity: 1;
         }
+      }
 
-        .adventure-card h2 {
-          font-size: 3rem;
+      .popup-icon {
+        font-size: 4rem;
+        margin-bottom: 10px;
+      }
+
+      .popup-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .popup-message {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #475569;
+      }
+
+      .popup-btn {
+        background: linear-gradient(135deg, #8b3dff, #a855f7);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 20px;
+        font-size: 1.3rem;
+        font-family: "Baloo 2", cursive;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: 0 5px 15px rgba(139, 61, 255, 0.3);
+      }
+
+      .popup-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      /* Tema Sukses */
+      .popup-success .popup-title {
+        color: #16a34a;
+      }
+
+      /* Tema Error */
+      .popup-error .popup-title {
+        color: #dc2626;
+      }
+      .popup-error .popup-btn {
+        background: linear-gradient(135deg, #ef4444, #f87171);
+        box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+      }
+
+      /* =========================
+          RESPONSIVE
+      ========================== */
+      @media (max-width: 1100px) {
+        .game-layout {
+          grid-template-columns: 1fr;
         }
-
-        .menu-text {
-          font-size: 1.1rem;
+        .board-wrapper {
+          order: 1;
         }
-
-        .big-emoji {
-          font-size: 85px;
+        .clues-wrapper {
+          order: 2;
         }
       }
     </style>
   </head>
 
   <body>
-    <!-- BACKGROUND SHAPES -->
-    <div class="bg-shape circle" style="top: 90px; left: 50px"></div>
-    <div class="bg-shape triangle" style="top: 140px; right: 100px"></div>
-    <div class="bg-shape square" style="top: 420px; left: 140px"></div>
-    <div class="bg-shape circle" style="top: 720px; right: 90px"></div>
-    <div class="bg-shape triangle" style="bottom: 250px; left: 90px"></div>
-    <div class="bg-shape square" style="bottom: 120px; right: 130px"></div>
+    <nav class="navbar">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">🎮</div>
+        Games Bangun Datar
+      </a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">🏠 Beranda</a>
+        <a href="tarik_tambang.html" class="nav-link">🪢 Tarik Tambang</a>
+        <a href="tts_bangun_datar.html" class="nav-link active"
+          >📝 Teka Teki Silang</a
+        >
+      </div>
+    </nav>
 
     <div class="container">
-      <!-- HERO -->
-      <section class="hero">
-        <div class="badge">
-          <span>Bab</span>
-          <span>4</span>
-        </div>
-
-        <div class="subtitle">Matematika Kelas 3</div>
-
-        <h1 class="title">
-          Unsur-unsur <br />
-          Bangun Datar
-        </h1>
-
-        <p class="description">
-          Garis, sudut, garis-garis tegak lurus, dan garis-garis sejajar
+      <div class="title">
+        <h1>Teka Teki Silang</h1>
+        <p>
+          Ayo selesaikan teka-teki! Klik "Cek" untuk memeriksa setiap jawabanmu.
         </p>
+      </div>
 
-        <div class="author">Oleh : Iza Anin Nabila 230401140100</div>
-      </section>
+      <div class="game-layout">
+        <div class="board-wrapper">
+          <div class="tts-board" id="ttsBoard"></div>
+        </div>
 
-      <!-- TUJUAN -->
-      <section>
-        <h2 class="section-title">⭐ Tujuan Pembelajaran ⭐</h2>
-
-        <div class="card-grid">
-          <div class="card">
-            <div class="icon-box">🔍</div>
-
-            <h3>1. Membedakan Garis & Ruas</h3>
-
-            <p>
-              Siswa mampu membedakan antara sinar garis, garis, dan ruas garis
-              dengan benar.
-            </p>
+        <div class="clues-wrapper">
+          <div class="clue-box">
+            <div class="clue-title">➡ Mendatar (Horizontal)</div>
+            <ul class="clue-list" id="acrossClues"></ul>
           </div>
 
-          <div class="card">
-            <div class="icon-box">📐</div>
-
-            <h3>2. Menentukan Sisi & Sudut</h3>
-
-            <p>
-              Siswa dapat menentukan jumlah sisi dan sudut pada berbagai bentuk
-              bangun datar.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="icon-box">✏️</div>
-
-            <h3>3. Menggambar Bangun</h3>
-
-            <p>
-              Siswa mampu membuat atau menggambar bangun datar dengan sisi
-              sejajar atau tegak lurus.
-            </p>
+          <div class="clue-box">
+            <div class="clue-title menurun">⬇ Menurun (Vertikal)</div>
+            <ul class="clue-list" id="downClues"></ul>
           </div>
         </div>
-      </section>
-
-      <!-- PETUALANGAN -->
-      <section>
-        <h2 class="section-title">🗺️ Pilih Petualanganmu!</h2>
-
-        <div class="adventure-grid">
-          <!-- MATERI -->
-          <div class="adventure-card materi">
-            <div class="big-emoji">📚</div>
-
-            <h2>Materi</h2>
-
-            <div class="menu">
-              <a href="/materi/sisi_bangun_datar.html">
-                <div class="menu-item">
-                  <div class="menu-icon">📏</div>
-                  <div class="menu-text">1. Sisi Pada Bangun Datar</div>
-                </div>
-              </a>
-
-              <a href="/materi/sudut_bangun_datar.html">
-                <div class="menu-item">
-                  <div class="menu-icon">📐</div>
-                  <div class="menu-text">2. Sudut Pada Bangun Datar</div>
-                </div>
-              </a>
-
-              <a href="/materi/garis_tegak_lurus_sejajar.html">
-                <div class="menu-item">
-                  <div class="menu-icon">📊</div>
-                  <div class="menu-text">3. Garis Tegak Lurus & Sejajar</div>
-                </div>
-              </a>
-              <a href="/materi/bangun_datar_sederhana.html">
-                <div class="menu-item">
-                  <div class="menu-icon">🔷</div>
-                  <div class="menu-text">4. Bangun Datar Sederhana</div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- GAMES -->
-          <div class="adventure-card games">
-            <div class="big-emoji">🏆</div>
-
-            <h2>Games</h2>
-
-            <div class="menu">
-              <a href="/games/tarik_tambang.html">
-                <div class="menu-item">
-                  <div class="menu-icon">🪢</div>
-                  <div class="menu-text">1. Tarik Tambang</div>
-                </div>
-              </a>
-
-              <a href="/games/teka_teki_silang.html">
-                <div class="menu-item">
-                  <div class="menu-icon">🧩</div>
-                  <div class="menu-text">2. Teka-teki Silang</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      © 2026 • Unsur-unsur Bangun Datar • Dibuat oleh Iza Anin Nabila
-      -230401140100
-    </footer>
+    <div class="popup-overlay" id="customPopup">
+      <div class="popup-box" id="popupBox">
+        <div class="popup-icon" id="popupIcon"></div>
+        <h3 class="popup-title" id="popupTitle"></h3>
+        <p class="popup-message" id="popupMessage"></p>
+        <button class="popup-btn" onclick="closePopup()">Oke!</button>
+      </div>
+    </div>
+
+    <div class="popup-overlay" id="finishPopup">
+      <div class="popup-box popup-success">
+        <div class="popup-icon">🏆</div>
+        <h3 class="popup-title">Luar Biasa!</h3>
+        <p class="popup-message">
+          Selamat! Kamu berhasil menyelesaikan semua teka-teki silang bangun
+          datar!
+        </p>
+        <button
+          class="popup-btn"
+          onclick="location.reload()"
+          style="background: linear-gradient(135deg, #10b981, #34d399)"
+        >
+          Main Lagi
+        </button>
+      </div>
+    </div>
 
     <script>
-      // Animasi klik
-      const items = document.querySelectorAll(".menu-item");
+      // 1. DATA KATA DAN SOAL
+      const wordsData = [
+        {
+          id: "1A",
+          num: 1,
+          dir: "A",
+          r: 2,
+          c: 2,
+          text: "PERSEGI",
+          clue: "Memiliki 4 sisi sama panjang & 4 sudut siku-siku",
+        },
+        {
+          id: "2A",
+          num: 2,
+          dir: "A",
+          r: 2,
+          c: 11,
+          text: "JAJARGENJANG",
+          clue: "Jajar genjang yang sudutnya tidak siku-siku",
+        },
+        {
+          id: "3A",
+          num: 3,
+          dir: "A",
+          r: 12,
+          c: 4,
+          text: "LINGKARAN",
+          clue: "Bangun datar tanpa sudut & simetri tak terhingga",
+        },
+        {
+          id: "4A",
+          num: 4,
+          dir: "A",
+          r: 15,
+          c: 0,
+          text: "SAMAKAKI",
+          clue: "Segitiga yang memiliki 2 sisi sama panjang",
+        },
+        {
+          id: "5A",
+          num: 5,
+          dir: "A",
+          r: 6,
+          c: 3,
+          text: "TRAPESIUM",
+          clue: "Segi empat yang memiliki sepasang sisi sejajar",
+        },
 
-      items.forEach((item) => {
-        item.addEventListener("click", () => {
-          item.animate(
-            [
-              { transform: "scale(1)" },
-              { transform: "scale(0.95)" },
-              { transform: "scale(1)" },
-            ],
-            {
-              duration: 250,
-            },
-          );
+        {
+          id: "6D",
+          num: 6,
+          dir: "D",
+          r: 6,
+          c: 1,
+          text: "LAYANGLAYANG",
+          clue: "Punya 2 pasang sisi sama panjang, diagonal tegak lurus",
+        },
+        {
+          id: "7D",
+          num: 7,
+          dir: "D",
+          r: 0,
+          c: 12,
+          text: "DIAGONAL",
+          clue: "Garis yang menghubungkan titik sudut berhadapan",
+        },
+        {
+          id: "8D",
+          num: 8,
+          dir: "D",
+          r: 6,
+          c: 8,
+          text: "SIKUSIKU",
+          clue: "Segitiga dengan salah satu sudut 90 derajat",
+        },
+        {
+          id: "9D",
+          num: 9,
+          dir: "D",
+          r: 10,
+          c: 4,
+          text: "BELAHKETUPAT",
+          clue: "Segi empat dengan 4 sisi sama panjang (mirip ketupat)",
+        },
+        {
+          id: "10D",
+          num: 10,
+          dir: "D",
+          r: 0,
+          c: 4,
+          text: "JARIJARI",
+          clue: "Jarak dari titik pusat ke tepi lingkaran",
+        },
+      ];
+
+      // Total kata yang sudah dijawab benar
+      let wordsCompleted = 0;
+
+      // 2. PERSIAPAN GRID (22 Baris x 23 Kolom)
+      const gridRows = 22;
+      const gridCols = 23;
+      const grid = Array.from({ length: gridRows }, () =>
+        Array(gridCols).fill(null),
+      );
+
+      // 3. MASUKKAN KATA KE DALAM GRID
+      wordsData.forEach((w) => {
+        let r = w.r,
+          c = w.c;
+        for (let i = 0; i < w.text.length; i++) {
+          if (!grid[r][c]) {
+            grid[r][c] = { letter: w.text[i], num: null, words: [] };
+          }
+          if (i === 0) grid[r][c].num = w.num;
+          grid[r][c].words.push(w.id);
+
+          if (w.dir === "A") c++;
+          else r++;
+        }
+      });
+
+      // 4. RENDER KE HTML
+      const ttsBoard = document.getElementById("ttsBoard");
+      const acrossClues = document.getElementById("acrossClues");
+      const downClues = document.getElementById("downClues");
+
+      // Render Grid
+      for (let r = 0; r < gridRows; r++) {
+        for (let c = 0; c < gridCols; c++) {
+          const cellData = grid[r][c];
+          const div = document.createElement("div");
+
+          if (!cellData) {
+            div.className = "empty-cell";
+          } else {
+            div.className = "tts-cell";
+            const wordIds = cellData.words.join(",");
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.maxLength = 1;
+            input.className = "tts-input";
+            input.dataset.r = r;
+            input.dataset.c = c;
+            input.dataset.words = wordIds;
+            input.dataset.answer = cellData.letter;
+
+            input.addEventListener("input", function (e) {
+              if (this.value) {
+                moveToNext(r, c, cellData.words[0]);
+              }
+            });
+
+            input.addEventListener("focus", function () {
+              highlightWord(cellData.words[0]);
+            });
+
+            div.appendChild(input);
+
+            if (cellData.num) {
+              const numSpan = document.createElement("span");
+              numSpan.className = "tts-number";
+              numSpan.innerText = cellData.num;
+              div.appendChild(numSpan);
+            }
+          }
+          ttsBoard.appendChild(div);
+        }
+      }
+
+      // Render Clues (Soal)
+      wordsData.forEach((w) => {
+        const li = document.createElement("li");
+        li.className = "clue-item";
+        li.id = `clue-${w.id}`;
+
+        // Buat struktur isi clue dengan tombol cek
+        li.innerHTML = `
+          <div class="clue-text-wrap" onclick="focusFirstInput('${w.id}')">
+            <span class="clue-num">${w.num}.</span> <span class="clue-text">${w.clue}</span>
+          </div>
+          <button class="btn-check-word" onclick="checkWord('${w.id}')">Cek</button>
+        `;
+
+        if (w.dir === "A") {
+          acrossClues.appendChild(li);
+        } else {
+          downClues.appendChild(li);
+        }
+      });
+
+      // 5. FUNGSI NAVIGASI & HIGHLIGHT
+      function highlightWord(wordId) {
+        document
+          .querySelectorAll(".clue-item")
+          .forEach((el) => el.classList.remove("active"));
+        document
+          .querySelectorAll(".tts-input")
+          .forEach((el) => el.classList.remove("highlight-word"));
+
+        const clueEl = document.getElementById(`clue-${wordId}`);
+        if (clueEl && !clueEl.classList.contains("done")) {
+          clueEl.classList.add("active");
+        }
+
+        const inputs = document.querySelectorAll(`.tts-input`);
+        inputs.forEach((input) => {
+          if (input.dataset.words.includes(wordId)) {
+            input.classList.add("highlight-word");
+          }
         });
-      });
+      }
 
-      // Background floating random duration
-      const shapes = document.querySelectorAll(".bg-shape");
+      function focusFirstInput(wordId) {
+        highlightWord(wordId);
+        const wInfo = wordsData.find((w) => w.id === wordId);
+        if (wInfo) {
+          const firstInput = document.querySelector(
+            `input[data-r='${wInfo.r}'][data-c='${wInfo.c}']`,
+          );
+          if (firstInput && !firstInput.disabled) firstInput.focus();
+        }
+      }
 
-      shapes.forEach((shape, index) => {
-        shape.style.animationDuration = `${6 + index}s`;
-      });
+      function moveToNext(r, c, wordId) {
+        const wordInfo = wordsData.find((w) => w.id === wordId);
+        if (!wordInfo) return;
+
+        let nextR = r,
+          nextC = c;
+        if (wordInfo.dir === "A") nextC++;
+        else nextR++;
+
+        const nextInput = document.querySelector(
+          `input[data-r='${nextR}'][data-c='${nextC}']`,
+        );
+        if (nextInput && nextInput.dataset.words.includes(wordId)) {
+          nextInput.focus();
+        }
+      }
+
+      // 6. FUNGSI POPUP
+      const popupOverlay = document.getElementById("customPopup");
+      const popupBox = document.getElementById("popupBox");
+      const popupIcon = document.getElementById("popupIcon");
+      const popupTitle = document.getElementById("popupTitle");
+      const popupMessage = document.getElementById("popupMessage");
+
+      function showPopup(type, title, msg) {
+        if (type === "success") {
+          popupBox.className = "popup-box popup-success";
+          popupIcon.innerText = "🎉";
+        } else if (type === "error") {
+          popupBox.className = "popup-box popup-error";
+          popupIcon.innerText = "🧐";
+        } else {
+          popupBox.className = "popup-box"; // info
+          popupIcon.innerText = "💡";
+        }
+
+        popupTitle.innerText = title;
+        popupMessage.innerText = msg;
+        popupOverlay.style.display = "flex";
+      }
+
+      function closePopup() {
+        popupOverlay.style.display = "none";
+      }
+
+      // 7. FUNGSI CEK PER KATA
+      function checkWord(wordId) {
+        const inputs = document.querySelectorAll(`.tts-input`);
+        let isCorrect = true;
+        let isFilled = true;
+        let wordInputs = [];
+
+        // Kumpulkan input untuk kata ini
+        inputs.forEach((input) => {
+          if (input.dataset.words.includes(wordId)) {
+            wordInputs.push(input);
+            if (input.value === "") {
+              isFilled = false;
+            } else if (input.value.toUpperCase() !== input.dataset.answer) {
+              isCorrect = false;
+            }
+          }
+        });
+
+        if (!isFilled) {
+          showPopup(
+            "info",
+            "Belum Lengkap!",
+            "Isi semua kotak untuk soal ini dulu ya.",
+          );
+          return;
+        }
+
+        if (isCorrect) {
+          // Tandai benar
+          wordInputs.forEach((input) => {
+            input.classList.add("correct");
+            // opsional: input.disabled = true; (agar tidak bisa diganti jika sudah benar)
+          });
+
+          document.getElementById(`clue-${wordId}`).classList.add("done");
+          wordsCompleted++;
+
+          if (wordsCompleted === wordsData.length) {
+            document.getElementById("finishPopup").style.display = "flex";
+          } else {
+            showPopup(
+              "success",
+              "Benar!",
+              "Hebat! Jawabanmu untuk soal ini tepat.",
+            );
+          }
+        } else {
+          // Jika ada yang salah
+          wordInputs.forEach((input) => {
+            // Hapus isi input HANYA jika hurufnya salah
+            // Jika suatu huruf kebetulan benar (misal huruf persilangan), jangan dihapus.
+            if (input.value.toUpperCase() !== input.dataset.answer) {
+              input.value = "";
+              input.classList.remove("correct");
+            }
+          });
+
+          showPopup(
+            "error",
+            "Kurang Tepat!",
+            "Ada huruf yang salah. Kotak yang salah sudah dikosongkan. Coba lagi ya!",
+          );
+        }
+      }
     </script>
   </body>
 </html>

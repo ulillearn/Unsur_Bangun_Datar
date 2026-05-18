@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sifat Bangun Datar Sederhana</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --purple: #8b3dff;
+        --purple2: #a855f7;
+        --purpleDark: #6d28d9;
+
+        --brown: #5f3415;
+
+        --yellow: #fff4be;
+        --yellow2: #ffe89a;
+
+        --pink: #fff2fa;
+        --white: #ffffff;
+
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      body {
+        font-family: "Baloo 2", cursive;
+        background:
+          radial-gradient(circle at top left, #ffe6f4 0%, transparent 20%),
+          radial-gradient(circle at bottom right, #fff2bf 0%, transparent 20%),
+          linear-gradient(180deg, #fffaff 0%, #fff7f1 100%);
+        overflow-x: hidden;
+        color: var(--brown);
+      }
+
+      /* =========================================
+         CSS KHUSUS NAVBAR
+      ========================================= */
+      .navbar {
+        background-color: #ffffff;
+        width: 95%; /* Diperlebar agar tidak sesak */
+        max-width: 1200px; /* Batas maksimal diperbesar */
+        margin: 20px auto;
+        padding: 12px 25px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow:
+          0 8px 0px rgba(155, 81, 224, 0.15),
+          0 15px 25px rgba(0, 0, 0, 0.05);
+        border: 3px solid #f0e6ff;
+        z-index: 1000;
+        font-family: "Nunito", sans-serif;
+      }
+
+      .navbar .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #9b51e0;
+        text-decoration: none;
+      }
+
+      .navbar .brand-icon {
+        background: #9b51e0;
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        transform: rotate(-10deg);
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .navbar .nav-link {
+        text-decoration: none;
+        color: #757575;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        font-family: "Nunito", sans-serif;
+      }
+
+      .navbar .nav-link:hover {
+        background-color: #f3e8ff;
+        color: #9b51e0;
+        transform: translateY(-2px);
+      }
+
+      /* Style untuk menu yang sedang aktif */
+      .navbar .nav-link.active {
+        background-color: #9b51e0;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(155, 81, 224, 0.4);
+      }
+
+      /* Responsive untuk HP dan Tablet (Navbar) */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px;
+          border-radius: 25px;
+        }
+        .navbar .nav-links {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+      @media (max-width: 480px) {
+        .navbar .nav-link {
+          padding: 8px 12px;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* =========================
+          MAIN CONTAINER
+      ========================== */
+
+      .container {
+        width: min(1250px, 92%);
+        margin: auto;
+        padding: 55px 0 100px;
+      }
+
+      /* =========================
+              HERO
+      ========================== */
+
+      .hero {
+        text-align: center;
+        margin-bottom: 80px;
+        animation: fadeDown 1s ease;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "🔍";
+        position: absolute;
+        left: 5%;
+        top: 10%;
+        font-size: 90px;
+        opacity: 0.12;
+        transform: rotate(-15deg);
+      }
+
+      .hero::after {
+        content: "💡";
+        position: absolute;
+        right: 8%;
+        top: 20%;
+        font-size: 85px;
+        opacity: 0.12;
+        transform: rotate(15deg);
+      }
+
+      .hero h1 {
+        font-size: clamp(3.2rem, 7vw, 5.5rem);
+        line-height: 1.1;
+        font-weight: 800;
+        color: var(--purple);
+
+        text-shadow:
+          -5px -5px 0 white,
+          5px -5px 0 white,
+          -5px 5px 0 white,
+          5px 5px 0 white,
+          0 10px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero p {
+        margin-top: 18px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #7a4a22;
+      }
+
+      /* =========================
+            SECTION
+      ========================== */
+
+      .section {
+        margin-top: 90px;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        color: var(--purple);
+        font-weight: 800;
+        margin-bottom: 35px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 150px;
+        height: 8px;
+        background: #e7d2ff;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 30px;
+      }
+
+      /* =========================
+          FEATURE CARD (HORIZONTAL)
+      ========================== */
+
+      .feature-card {
+        background: white;
+        border-radius: 40px;
+        padding: 40px 50px;
+        box-shadow: var(--shadow);
+        margin-bottom: 35px;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        width: 250px;
+        height: 250px;
+        background: #fdf4ff;
+        border-radius: 50%;
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        z-index: 0;
+      }
+
+      .feature-svg {
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+        width: 280px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .feature-svg svg {
+        filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.08));
+      }
+
+      .feature-content {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+      }
+
+      .feature-content h3 {
+        font-size: 2.5rem;
+        color: var(--purple);
+        margin-bottom: 15px;
+      }
+
+      /* =========================
+          TYPE CARD (GRID)
+      ========================== */
+
+      .type-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .type-card {
+        background: white;
+        border-radius: 35px;
+        padding: 35px;
+        box-shadow: var(--shadow);
+        transition: 0.35s;
+        text-align: center;
+      }
+
+      .type-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .type-card h3 {
+        font-size: 1.8rem;
+        color: var(--purple);
+        margin-bottom: 20px;
+      }
+
+      .svg-demo {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      /* =========================
+            LIST & UTILS
+      ========================== */
+
+      .svg-label {
+        font-family: "Nunito", sans-serif;
+        font-weight: 900;
+        font-size: 16px;
+        fill: #4b5563;
+      }
+
+      .prop-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .prop-list li {
+        font-size: 1.35rem;
+        line-height: 1.6;
+        font-weight: 700;
+        margin-bottom: 12px;
+        padding-left: 35px;
+        position: relative;
+      }
+
+      .prop-list li::before {
+        content: "✨";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        font-size: 1.2rem;
+      }
+
+      /* =========================
+            FOOTER & ANIMASI
+      ========================== */
+
+      footer {
+        margin-top: 90px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #7a4317;
+      }
+
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 950px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+        .section-title {
+          font-size: 2.2rem;
+        }
+        .feature-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 35px 25px;
+          gap: 20px;
+        }
+        .feature-svg {
+          width: 100%;
+        }
+        .prop-list li {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">📘</div>
+        Unsur Bangun Datar
+      </a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">🏠 Beranda</a>
+        <a href="sisi_bangun_datar.html" class="nav-link">Sisi</a>
+        <a href="sudut_bangun_datar.html" class="nav-link">Sudut</a>
+        <a href="garis_tegak_lurus_sejajar.html" class="nav-link">Garis</a>
+        <a href="bangun_datar_sederhana.html" class="nav-link">Bangun Datar</a>
+        <a href="sifat_bangun_datar_sederhana.html" class="nav-link"
+          >Sifat-sifat</a
+        >
+      </div>
+    </nav>
+
+    <div class="container">
+      <section class="hero">
+        <h1>Sifat-sifat Bangun Datar</h1>
+        <p>
+          Halo pahlawan cilik! Setiap bangun datar itu punya "ciri khas" lho.
+          Mari kita cari tahu rahasianya!
+        </p>
+      </section>
+
+      <section class="section" style="margin-top: 40px">
+        <h2 class="section-title">A. Sifat Segitiga Umum</h2>
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 150 150" width="160" height="160">
+              <polygon
+                points="75,20 20,120 130,120"
+                fill="#ffe89a"
+                stroke="#8b3dff"
+                stroke-width="5"
+                stroke-linejoin="round"
+              />
+              <text x="68" y="15" class="svg-label">C</text>
+              <text x="10" y="140" class="svg-label">A</text>
+              <text x="125" y="140" class="svg-label">B</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>Segitiga</h3>
+            <ul class="prop-list">
+              <li>
+                Memiliki <strong>3 sisi</strong> (garis pinggir), yaitu: sisi
+                AB, sisi BC, dan sisi CA.
+              </li>
+              <li>
+                Memiliki <strong>3 titik sudut</strong> (pojokan), yaitu: sudut
+                A, sudut B, dan sudut C.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3
+          style="
+            text-align: center;
+            color: var(--purpleDark);
+            font-size: 2rem;
+            margin: 40px 0 20px;
+          "
+        >
+          Macam-macam Segitiga:
+        </h3>
+        <div class="type-grid">
+          <div class="type-card">
+            <h3>Sama Sisi</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 120 120" width="100" height="100">
+                <polygon
+                  points="60,15 20,95 100,95"
+                  fill="#fecaca"
+                  stroke="#ef4444"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line
+                  x1="33"
+                  y1="55"
+                  x2="47"
+                  y2="55"
+                  stroke="#ef4444"
+                  stroke-width="4"
+                />
+                <line
+                  x1="73"
+                  y1="55"
+                  x2="87"
+                  y2="55"
+                  stroke="#ef4444"
+                  stroke-width="4"
+                />
+                <line
+                  x1="60"
+                  y1="88"
+                  x2="60"
+                  y2="102"
+                  stroke="#ef4444"
+                  stroke-width="4"
+                />
+              </svg>
+            </div>
+            <p style="font-weight: 700; font-size: 1.2rem">
+              Ketiga sisinya sama panjang.
+            </p>
+          </div>
+          <div class="type-card">
+            <h3>Sama Kaki</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 120 120" width="100" height="100">
+                <polygon
+                  points="60,15 30,95 90,95"
+                  fill="#bae6fd"
+                  stroke="#3b82f6"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line
+                  x1="38"
+                  y1="55"
+                  x2="52"
+                  y2="55"
+                  stroke="#3b82f6"
+                  stroke-width="4"
+                />
+                <line
+                  x1="68"
+                  y1="55"
+                  x2="82"
+                  y2="55"
+                  stroke="#3b82f6"
+                  stroke-width="4"
+                />
+              </svg>
+            </div>
+            <p style="font-weight: 700; font-size: 1.2rem">
+              Memiliki dua sisi sama panjang.
+            </p>
+          </div>
+          <div class="type-card">
+            <h3>Siku-Siku</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 120 120" width="100" height="100">
+                <polygon
+                  points="20,15 20,95 100,95"
+                  fill="#fef08a"
+                  stroke="#d97706"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="20"
+                  y="75"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="#d97706"
+                  stroke-width="4"
+                />
+              </svg>
+            </div>
+            <p style="font-weight: 700; font-size: 1.2rem">
+              Salah satu sudutnya siku-siku.
+            </p>
+          </div>
+          <div class="type-card">
+            <h3>Sembarang</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 120 120" width="100" height="100">
+                <polygon
+                  points="40,15 10,95 110,80"
+                  fill="#bbf7d0"
+                  stroke="#059669"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <p style="font-weight: 700; font-size: 1.2rem">
+              Ketiga sisinya berbeda panjang.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">B. Sifat Segi Empat</h2>
+
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 200 180" width="200" height="180">
+              <rect
+                x="40"
+                y="30"
+                width="120"
+                height="120"
+                fill="#fff9cb"
+                stroke="#d97706"
+                stroke-width="5"
+              />
+              <line
+                x1="40"
+                y1="30"
+                x2="160"
+                y2="150"
+                stroke="#9ca3af"
+                stroke-width="3"
+                stroke-dasharray="6,4"
+              />
+              <line
+                x1="160"
+                y1="30"
+                x2="40"
+                y2="150"
+                stroke="#9ca3af"
+                stroke-width="3"
+                stroke-dasharray="6,4"
+              />
+              <text x="20" y="25" class="svg-label">D</text>
+              <text x="165" y="25" class="svg-label">C</text>
+              <text x="20" y="170" class="svg-label">A</text>
+              <text x="165" y="170" class="svg-label">B</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>1. Persegi</h3>
+            <ul class="prop-list">
+              <li>Memiliki 4 sisi, yaitu: sisi AB, BC, CD, dan DA.</li>
+              <li>Memiliki 4 titik sudut, yaitu: sudut A, B, C, dan D.</li>
+              <li>
+                Memiliki sisi yang <strong>sama panjang semua</strong> (AB = BC
+                = CD = DA).
+              </li>
+              <li>Memiliki garis diagonal yang sama panjang (AC = BD).</li>
+              <li>
+                Keempat pojoknya membentuk sudut <strong>siku-siku</strong>.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 250 160" width="250" height="160">
+              <rect
+                x="25"
+                y="30"
+                width="200"
+                height="100"
+                fill="#e0f2fe"
+                stroke="#0284c7"
+                stroke-width="5"
+              />
+              <line
+                x1="25"
+                y1="30"
+                x2="225"
+                y2="130"
+                stroke="#9ca3af"
+                stroke-width="3"
+                stroke-dasharray="6,4"
+              />
+              <line
+                x1="225"
+                y1="30"
+                x2="25"
+                y2="130"
+                stroke="#9ca3af"
+                stroke-width="3"
+                stroke-dasharray="6,4"
+              />
+              <text x="10" y="25" class="svg-label">D</text>
+              <text x="230" y="25" class="svg-label">C</text>
+              <text x="10" y="150" class="svg-label">A</text>
+              <text x="230" y="150" class="svg-label">B</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>2. Persegi Panjang</h3>
+            <ul class="prop-list">
+              <li>Memiliki 4 sisi dan 4 titik sudut.</li>
+              <li>
+                Memiliki 2 pasang sisi sejajar dan
+                <strong>sama panjang dengan hadapannya</strong> (sisi AB // CD
+                dan AD // BC).
+              </li>
+              <li>Memiliki garis diagonal yang sama panjang (AC = BD).</li>
+              <li>
+                Keempat pojoknya membentuk sudut <strong>siku-siku</strong>.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 220 150" width="220" height="150">
+              <polygon
+                points="60,30 200,30 160,120 20,120"
+                fill="#f3e8ff"
+                stroke="#6d28d9"
+                stroke-width="5"
+                stroke-linejoin="round"
+              />
+              <text x="45" y="20" class="svg-label">D</text>
+              <text x="205" y="20" class="svg-label">C</text>
+              <text x="5" y="135" class="svg-label">A</text>
+              <text x="170" y="135" class="svg-label">B</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>3. Jajar Genjang</h3>
+            <ul class="prop-list">
+              <li>Memiliki 4 sisi dan 4 titik sudut.</li>
+              <li>
+                Memiliki 2 pasang sisi yang sejajar dan sama panjang (AB = CD
+                dan AD = BC).
+              </li>
+              <li>
+                Memiliki 2 sudut <strong>lancip</strong> (A dan C) dan 2 sudut
+                <strong>tumpul</strong> (B dan D).
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 160 180" width="160" height="180">
+              <!-- Polygon belah ketupat -->
+              <polygon
+                points="80,20 140,90 80,160 20,90"
+                fill="#fce7f3"
+                stroke="#be185d"
+                stroke-width="5"
+                stroke-linejoin="round"
+              />
+
+              <!-- Label titik -->
+              <text x="75" y="15" class="svg-label">C</text>
+              <text x="145" y="95" class="svg-label">B</text>
+              <text x="75" y="175" class="svg-label">A</text>
+              <text x="5" y="95" class="svg-label">D</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>4. Belah Ketupat</h3>
+            <ul class="prop-list">
+              <li>Memiliki 4 sisi dan 4 titik sudut.</li>
+              <li>
+                Keempat sisinya <strong>sama panjang semua</strong> (AB = BC =
+                CD = DA).
+              </li>
+              <li>
+                Mempunyai 2 sudut lancip (A & C) dan 2 sudut tumpul (B & D).
+                Sudut yang saling berhadapan besarnya sama.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-svg">
+            <svg viewBox="0 0 250 140" width="250" height="140">
+              <polygon
+                points="60,20 180,20 230,110 10,110"
+                fill="#ffedd5"
+                stroke="#ea580c"
+                stroke-width="5"
+                stroke-linejoin="round"
+              />
+              <text x="45" y="15" class="svg-label">D</text>
+              <text x="185" y="15" class="svg-label">C</text>
+              <text x="0" y="125" class="svg-label">A</text>
+              <text x="235" y="125" class="svg-label">B</text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>5. Trapesium</h3>
+            <ul class="prop-list">
+              <li>Memiliki 4 sisi dan 4 titik sudut.</li>
+              <li>
+                Keunikannya: Memiliki
+                <strong>sepasang sisi yang sejajar</strong> (sisi AB // CD).
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3
+          style="
+            text-align: center;
+            color: var(--purpleDark);
+            font-size: 2rem;
+            margin: 40px 0 20px;
+          "
+        >
+          Macam-macam Trapesium:
+        </h3>
+        <div
+          class="type-grid"
+          style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"
+        >
+          <div class="type-card">
+            <h3>Sama Kaki</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 160 100" width="160" height="100">
+                <polygon
+                  points="40,10 120,10 150,90 10,90"
+                  fill="none"
+                  stroke="#4c1d95"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line
+                  x1="40"
+                  y1="10"
+                  x2="40"
+                  y2="90"
+                  stroke="#4c1d95"
+                  stroke-width="2"
+                  stroke-dasharray="4,4"
+                />
+                <line
+                  x1="120"
+                  y1="10"
+                  x2="120"
+                  y2="90"
+                  stroke="#4c1d95"
+                  stroke-width="2"
+                  stroke-dasharray="4,4"
+                />
+                <line
+                  x1="20"
+                  y1="50"
+                  x2="30"
+                  y2="50"
+                  stroke="#4c1d95"
+                  stroke-width="3"
+                />
+                <line
+                  x1="130"
+                  y1="50"
+                  x2="140"
+                  y2="50"
+                  stroke="#4c1d95"
+                  stroke-width="3"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="type-card">
+            <h3>Siku-Siku</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 160 100" width="160" height="100">
+                <polygon
+                  points="50,10 140,10 140,90 10,90"
+                  fill="none"
+                  stroke="#d97706"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line
+                  x1="50"
+                  y1="10"
+                  x2="50"
+                  y2="90"
+                  stroke="#d97706"
+                  stroke-width="2"
+                  stroke-dasharray="4,4"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="type-card">
+            <h3>Sembarang</h3>
+            <div class="svg-demo">
+              <svg viewBox="0 0 160 100" width="160" height="100">
+                <polygon
+                  points="50,10 100,10 150,90 10,90"
+                  fill="none"
+                  stroke="#0284c7"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                />
+                <line
+                  x1="50"
+                  y1="10"
+                  x2="50"
+                  y2="90"
+                  stroke="#0284c7"
+                  stroke-width="2"
+                  stroke-dasharray="4,4"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">C. Sifat Lingkaran</h2>
+        <div
+          class="feature-card"
+          style="background: linear-gradient(135deg, #f0fdf4, #ffffff)"
+        >
+          <div class="feature-svg">
+            <svg viewBox="0 0 200 200" width="200" height="200">
+              <circle
+                cx="100"
+                cy="100"
+                r="90"
+                fill="#d1fae5"
+                stroke="#059669"
+                stroke-width="5"
+              />
+              <circle cx="100" cy="100" r="5" fill="#059669" />
+              <line
+                x1="100"
+                y1="100"
+                x2="100"
+                y2="10"
+                stroke="#b91c1c"
+                stroke-width="4"
+              />
+              <text
+                x="75"
+                y="80"
+                class="svg-label"
+                fill="#b91c1c"
+                style="font-size: 24px"
+              >
+                r
+              </text>
+              <line
+                x1="10"
+                y1="100"
+                x2="190"
+                y2="100"
+                stroke="#059669"
+                stroke-width="3"
+                stroke-dasharray="6,4"
+              />
+
+              <text x="105" y="135" class="svg-label" style="font-size: 22px">
+                P
+              </text>
+              <text x="5" y="105" class="svg-label" style="font-size: 20px">
+                A
+              </text>
+              <text x="185" y="105" class="svg-label" style="font-size: 20px">
+                B
+              </text>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>Lingkaran</h3>
+            <ul class="prop-list">
+              <li>
+                Memiliki <strong>satu titik pusat</strong> tepat di tengahnya
+                (titik P).
+              </li>
+              <li>
+                Jarak dari titik pusat ke pinggir lingkaran selalu sama. Garis
+                ini dinamakan <strong>jari-jari (r)</strong>.
+              </li>
+              <li>
+                Garis lurus yang membelah lingkaran melewati titik pusat
+                dinamakan <strong>diameter (d)</strong>.
+              </li>
+              <li>
+                Panjang diameter selalu sama dengan
+                <strong>dua kali lipat jari-jari</strong> (d = 2 x r).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      Dibuat dengan ❤️ untuk pembelajaran matematika yang menyenangkan!
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentUrl = window.location.href;
+        const navLinks = document.querySelectorAll(".navbar .nav-link");
+
+        navLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+          if (currentUrl.includes(linkHref)) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

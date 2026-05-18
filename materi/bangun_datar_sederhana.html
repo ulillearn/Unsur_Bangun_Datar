@@ -56,8 +56,8 @@
       ========================================= */
       .navbar {
         background-color: #ffffff;
-        width: 90%;
-        max-width: 1000px;
+        width: 95%; /* Diperlebar agar tidak sesak */
+        max-width: 1200px; /* Batas maksimal diperbesar */
         margin: 20px auto;
         padding: 12px 25px;
         border-radius: 50px;
@@ -112,6 +112,7 @@
         gap: 8px;
         transition: all 0.3s ease;
         font-family: "Nunito", sans-serif;
+        white-space: nowrap; /* Mencegah teks turun ke baris baru */
       }
 
       .navbar .nav-link:hover {
@@ -149,7 +150,7 @@
       }
 
       /* =========================
-          MAIN CONTAINER
+         MAIN CONTAINER
       ========================== */
 
       .container {
@@ -159,7 +160,7 @@
       }
 
       /* =========================
-              HERO
+             HERO
       ========================== */
 
       .hero {
@@ -280,7 +281,7 @@
       }
 
       /* =========================
-          TYPE CARD
+         TYPE CARD
       ========================== */
 
       .type-grid {
@@ -418,6 +419,9 @@
         <a href="sudut_bangun_datar.html" class="nav-link">Sudut</a>
         <a href="garis_tegak_lurus_sejajar.html" class="nav-link">Garis</a>
         <a href="bangun_datar_sederhana.html" class="nav-link">Bangun Datar</a>
+        <a href="sifat_bangun_datar_sederhana.html" class="nav-link"
+          >Sifat-sifat</a
+        >
       </div>
     </nav>
 
@@ -461,7 +465,6 @@
         </p>
 
         <div class="type-grid">
-          <!-- SEGITIGA SAMA KAKI -->
           <div class="type-card">
             <div class="number">1</div>
 
@@ -469,7 +472,6 @@
 
             <div class="svg-demo">
               <svg viewBox="0 0 100 100" width="120" height="120">
-                <!-- Bentuk lebih tinggi dan ramping -->
                 <polygon
                   points="50,8 25,85 75,85"
                   fill="#ffe89a"
@@ -477,8 +479,6 @@
                   stroke-width="5"
                   stroke-linejoin="round"
                 />
-
-                <!-- Tanda sisi kiri -->
                 <line
                   x1="33"
                   y1="48"
@@ -488,8 +488,6 @@
                   stroke-width="4"
                   stroke-linecap="round"
                 />
-
-                <!-- Tanda sisi kanan -->
                 <line
                   x1="58"
                   y1="54"
@@ -508,7 +506,6 @@
             </p>
           </div>
 
-          <!-- SEGITIGA SAMA SISI -->
           <div class="type-card">
             <div class="number">2</div>
 
@@ -516,7 +513,6 @@
 
             <div class="svg-demo">
               <svg viewBox="0 0 100 100" width="120" height="120">
-                <!-- Segitiga dibuat lebih simetris -->
                 <polygon
                   points="50,12 20,82 80,82"
                   fill="#ffe89a"
@@ -524,8 +520,6 @@
                   stroke-width="5"
                   stroke-linejoin="round"
                 />
-
-                <!-- Tanda sisi kiri -->
                 <line
                   x1="34"
                   y1="48"
@@ -535,8 +529,6 @@
                   stroke-width="4"
                   stroke-linecap="round"
                 />
-
-                <!-- Tanda sisi kanan -->
                 <line
                   x1="58"
                   y1="54"
@@ -546,8 +538,6 @@
                   stroke-width="4"
                   stroke-linecap="round"
                 />
-
-                <!-- Tanda sisi bawah dibuat VERTIKAL -->
                 <line
                   x1="50"
                   y1="74"
@@ -566,7 +556,6 @@
             </p>
           </div>
 
-          <!-- SEGITIGA SIKU -->
           <div class="type-card">
             <div class="number">3</div>
 
@@ -581,7 +570,6 @@
                   stroke-width="5"
                   stroke-linejoin="round"
                 />
-
                 <polyline
                   points="20,70 35,70 35,85"
                   fill="none"
@@ -597,7 +585,6 @@
             </p>
           </div>
 
-          <!-- SEGITIGA SEMBARANG -->
           <div class="type-card">
             <div class="number">4</div>
 
